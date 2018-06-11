@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1060636420241",
+    "firebase_url": "https://socialite-f92b8.firebaseio.com",
+    "project_id": "socialite-f92b8",
+    "storage_bucket": "socialite-f92b8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060636420241:android:b5fd25c6a51299ef",
+        "android_client_info": {
+          "package_name": "edu.wit.mobileapp.socialite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1060636420241-rksqi2l4rpgqls4rrhrod8c2b4r18a7e.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1060636420241-rksqi2l4rpgqls4rrhrod8c2b4r18a7e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUPqVoSMh1a6W78Gtbwl4u6T0Z6ZoPsd4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
