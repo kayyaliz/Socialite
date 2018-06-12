@@ -702,6 +702,7 @@ public class SoftKeyboard extends InputMethodService
             CharSequence before = currentInputConnection.getTextBeforeCursor(10000,0);
             CharSequence after = currentInputConnection.getTextAfterCursor(10000,0);
             String finText = before.toString().trim() + " " + after.toString().trim();
+            Log.d("Socialite", finText);
         }
     }
 
