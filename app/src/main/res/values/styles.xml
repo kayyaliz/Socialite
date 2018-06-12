@@ -14,4 +14,10 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="LogInEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/LogInPrimary</item>
+        <item name="colorControlActivated">@color/LogInPrimaryActivated</item>
+        <item name="android:textColorHint">@color/LogInPrimaryActivated</item>
+    </style>
+
 </resources>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@drawable/backrepeat"
     android:gravity="center_horizontal"
     android:orientation="vertical"
@@ -26,7 +26,11 @@
         android:id="@+id/login_form"
         android:layout_width="match_parent"
         android:layout_height="323dp"
-        android:layout_centerInParent="true">
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:scrollbarAlwaysDrawVerticalTrack="true">
 
         <LinearLayout
             android:id="@+id/email_login_form"
@@ -44,25 +48,28 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:outlineProvider="bounds"
+                android:textColorHint="@color/LogInPrimaryActivated"
+                app:hintTextAppearance="@style/LogInEditText">
 
                 <AutoCompleteTextView
                     android:id="@+id/email"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="47dp"
                     android:hint="@string/prompt_email"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:textColor="#273043"
-                    android:textColorHighlight="#273043"
-                    android:textColorHint="#273043" />
+                    android:theme="@style/LogInEditText" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/LogInPrimaryActivated"
+                app:hintTextAppearance="@style/LogInEditText">
 
                 <EditText
                     android:id="@+id/password"
@@ -77,7 +84,8 @@
                     android:singleLine="true"
                     android:textColor="#273043"
                     android:textColorHighlight="#273043"
-                    android:textColorHint="#273043" />
+                    android:textColorHint="#273043"
+                    android:theme="@style/LogInEditText" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -100,7 +108,8 @@
                     android:textColor="#273043"
                     android:textColorHighlight="#273043"
                     android:textColorHint="#273043"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:theme="@style/Widget.AppCompat.Button.Borderless.Colored" />
 
                 <Button
                     android:id="@+id/button"

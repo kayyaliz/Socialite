@@ -25,4 +25,7 @@
     <color name="candidate_recommended">#000000</color>
     <color name="candidate_other">#ff808080</color>
     <color name="candidate_background">#bbffffff</color>
+
+    <color name="LogInPrimary">#536dfe</color>
+    <color name="LogInPrimaryActivated">#3f51b5</color>
 </resources>
