@@ -2,20 +2,41 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.wit.mobileapp.socialite.Keyboard">
 
-    <application
-        android:label="@string/ime_name">
-        <activity android:name=".ImePreferences" android:label="@string/settings_name">
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <application android:label="@string/ime_name">
+        <activity
+            android:name=".ImePreferences"
+            android:label="@string/settings_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <service android:name="SoftKeyboard"
+
+        <service
+            android:name=".SoftKeyboard"
             android:permission="android.permission.BIND_INPUT_METHOD">
             <intent-filter>
                 <action android:name="android.view.InputMethod" />
             </intent-filter>
-            <meta-data android:name="android.view.im" android:resource="@xml/method" />
+
+            <meta-data
+                android:name="android.view.im"
+                android:resource="@xml/method" />
         </service>
+
+        <activity
+            android:name="edu.wit.mobileapp.socialite.GUI.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
