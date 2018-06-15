@@ -51,6 +51,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import edu.wit.mobileapp.socialite.IBM.NLU;
+
 import static android.app.Activity.RESULT_OK;
 
 /**
@@ -105,7 +107,7 @@ public class SoftKeyboard extends InputMethodService
     private SpellCheckerSession mScs;
     private List<String> mSuggestions;
 
-
+    private String submissionString = "";
 
     /**
      * Main initialization of the input method component.  Be sure to call
@@ -269,8 +271,8 @@ public class SoftKeyboard extends InputMethodService
      */
     @Override public void onFinishInput() {
         super.onFinishInput();
-
-        Log.v("Socialite", mComposed.toString());
+        submitData();
+        //Log.v("Socialite", mComposed.toString());
         // Clear current composing text and candidates.
         mComposed.delete(0, mComposed.capacity());
         mComposing.setLength(0);
@@ -556,6 +558,7 @@ public class SoftKeyboard extends InputMethodService
 
     public void onKey(int primaryCode, int[] keyCodes) {
         Log.d("Test","KEYCODE: " + primaryCode);
+        storeText(getCurrentInputConnection());
         if (isWordSeparator(primaryCode)) {
             // Handle separator
             if (mComposing.length() > 0) {
@@ -616,6 +619,7 @@ public class SoftKeyboard extends InputMethodService
                 Log.d("SoftKeyboard", "REQUESTING: " + mComposing.toString());
                 mScs.getSentenceSuggestions(new TextInfo[] {new TextInfo(mComposing.toString())}, 5);
                 setSuggestions(list, true, true);
+                storeText(getCurrentInputConnection());
             } else {
                 setSuggestions(null, false, false);
             }
@@ -647,6 +651,7 @@ public class SoftKeyboard extends InputMethodService
             updateCandidates();
         } else {
             keyDownUp(KeyEvent.KEYCODE_DEL);
+            storeText(getCurrentInputConnection());
         }
         updateShiftKeyState(getCurrentInputEditorInfo());
     }
@@ -691,19 +696,25 @@ public class SoftKeyboard extends InputMethodService
 
     private void handleClose() {
         commitTyped(getCurrentInputConnection());
-        storeText(getCurrentInputConnection());
+        submitData();
         requestHideSelf(0);
         mInputView.closing();
     }
 
-    private void storeText(InputConnection currentInputConnection) {
-        if (mComposed.length() > 0)
-        {
-            CharSequence before = currentInputConnection.getTextBeforeCursor(10000,0);
-            CharSequence after = currentInputConnection.getTextAfterCursor(10000,0);
-            String finText = before.toString().trim() + " " + after.toString().trim();
-            Log.d("Socialite", finText);
+    private void submitData() {
+        Log.d("Submission", "submissionString");
+        if(!submissionString.isEmpty()) {
+            NLU NLUhandler = new NLU(submissionString);
+            NLUhandler.execute();
+           // NLUhandler.submitToAPI();
         }
+    }
+
+    private void storeText(InputConnection currentInputConnection) {
+        CharSequence before = currentInputConnection.getTextBeforeCursor(10000,0);
+        CharSequence after = currentInputConnection.getTextAfterCursor(10000,0);
+        submissionString = before.toString().trim() + " " + after.toString().trim();
+        Log.d("Socialite", submissionString);
     }
 
     private IBinder getToken() {
@@ -765,14 +776,12 @@ public class SoftKeyboard extends InputMethodService
     }
     
     public void swipeRight() {
-        Log.d("SoftKeyboard", "Swipe right");
         if (mCompletionOn || mPredictionOn) {
             pickDefaultCandidate();
         }
     }
     
     public void swipeLeft() {
-        Log.d("SoftKeyboard", "Swipe left");
         handleBackspace();
     }
 
@@ -837,47 +846,5 @@ public class SoftKeyboard extends InputMethodService
         setSuggestions(sb, true, true);
     }
 
-//    public class VoiceInput extends Fragment {
-//        public TextToSpeech textToSpeech;
-//        private final int REQ_CODE_SPEECH_INPUT = 100;
-//        public String recordedText;
-//
-//        public VoiceInput () {
-//            this.recordedText = "";
-//        }
-//
-//        public void recordSpeech () {
-//            Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-//            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-//            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-////            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.try_help));
-//            try{
-//                startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
-//            } catch (ActivityNotFoundException e) {
-//                Toast.makeText(getApplicationContext(), "Speech Not Supported", Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//
-//        @Override
-//        public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//            super.onActivityResult(requestCode, resultCode, data);
-//            switch (requestCode) {
-//                case REQ_CODE_SPEECH_INPUT: {
-//                    if (resultCode == RESULT_OK && null != data) {
-//                        ArrayList<String> result = data
-//                                .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-//                        recordedText = result.get(0);
-//                        Log.d("VOICEINPUT2", recordedText);
-//                    }
-//                    break;
-//                }
-//
-//            }
-//        }
-//
-//        @Override
-//        public void onInit(int status) {
-//
-//        }
-//    }
+
 }
