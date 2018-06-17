@@ -27,6 +27,7 @@
             <meta-data
                 android:name="android.view.im"
                 android:resource="@xml/method" />
+            <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_application_id"/>
         </service>
 
         <activity
@@ -41,7 +42,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="edu.wit.mobileapp.socialite.GUI.NavigationDrawer"
+            android:name="edu.wit.mobileapp.socialite.GUI.Home"
             android:label="@string/title_activity_navigation_drawer"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
