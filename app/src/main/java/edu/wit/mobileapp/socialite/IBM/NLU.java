@@ -90,48 +90,10 @@ public class NLU extends AsyncTask<String, Void, Void> {
     }
 
     private void storeInDB(String uid, AnalysisResults response) {
-       // NLU_Data nludata = new NLU_Data(response);
-     //   db_ref.child(uid).child("NLU_Data").setValue(nludata);
-
         Map<String, String> timestamp = ServerValue.TIMESTAMP;
-        JSONObject combined = new JSONObject();
-        try {
-            combined.put("Timestamp", timestamp);
-            combined.put("Data", response);
-            Log.v("TEST", combined.toString());
-            DatabaseReference PostRef = db_ref.child(uid).child("NLU_Data").push();
-            PostRef.child("data").setValue(response);
-            PostRef.child("Timestamp").setValue(timestamp);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
+        DatabaseReference PostRef = db_ref.child(uid).child("NLU_Data").push();
+        PostRef.child("data").setValue(response);
+        PostRef.child("Timestamp").setValue(timestamp);
     }
 
-    @IgnoreExtraProperties
-    public class NLU_Data {
-
-        AnalysisResults response;
-        HashMap<String, Object> timestampCreated;
-
-        public NLU_Data() {
-            // Default constructor required for calls to DataSnapshot.getValue(User.class)
-        }
-
-        public NLU_Data(AnalysisResults response) {
-            this.response = response;
-            HashMap<String, Object> timestampNow = new HashMap<>();
-            timestampNow.put("timestamp", ServerValue.TIMESTAMP);
-            this.timestampCreated = timestampNow;
-        }
-
-        public AnalysisResults getResponse() {
-            return response;
-        }
-
-        public HashMap<String, Object> getTimestampCreated(){
-            return timestampCreated;
-        }
-    }
 }

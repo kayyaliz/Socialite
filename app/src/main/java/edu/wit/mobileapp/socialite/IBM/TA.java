@@ -79,7 +79,6 @@ public class TA extends AsyncTask<String, Void, Void>{
 
     private void storeInDb(String uid, UtteranceAnalyses utterancesTone) {
         Map<String, String> timestamp = ServerValue.TIMESTAMP;
-
         DatabaseReference PostRef = db_ref.child(uid).child("TA_Data").push();
         PostRef.child("data").setValue(utterancesTone);
         PostRef.child("Timestamp").setValue(timestamp);

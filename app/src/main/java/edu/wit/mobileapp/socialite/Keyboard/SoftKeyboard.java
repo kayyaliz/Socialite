@@ -110,6 +110,8 @@ public class SoftKeyboard extends InputMethodService
 
     private String submissionString = "";
 
+    private Boolean alreadyExecuted = false;
+
     /**
      * Main initialization of the input method component.  Be sure to call
      * to super class.
@@ -559,6 +561,7 @@ public class SoftKeyboard extends InputMethodService
 
     public void onKey(int primaryCode, int[] keyCodes) {
         Log.d("Test","KEYCODE: " + primaryCode);
+        alreadyExecuted = false;
         storeText(getCurrentInputConnection());
         if (isWordSeparator(primaryCode)) {
             // Handle separator
@@ -704,12 +707,12 @@ public class SoftKeyboard extends InputMethodService
 
     private void submitData() {
         Log.d("Submission", "submissionString");
-        if(!submissionString.isEmpty()) {
+        if(!submissionString.isEmpty() && !alreadyExecuted) {
+            alreadyExecuted = true;
             NLU NLUhandler = new NLU(submissionString);
             NLUhandler.execute();
             TA TAhandler = new TA(submissionString);
             TAhandler.execute();
-           // NLUhandler.submitToAPI();
         }
     }
 
