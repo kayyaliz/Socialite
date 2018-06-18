@@ -52,6 +52,7 @@ import java.util.List;
 import java.util.Locale;
 
 import edu.wit.mobileapp.socialite.IBM.NLU;
+import edu.wit.mobileapp.socialite.IBM.TA;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -706,6 +707,8 @@ public class SoftKeyboard extends InputMethodService
         if(!submissionString.isEmpty()) {
             NLU NLUhandler = new NLU(submissionString);
             NLUhandler.execute();
+            TA TAhandler = new TA(submissionString);
+            TAhandler.execute();
            // NLUhandler.submitToAPI();
         }
     }
