@@ -69,4 +69,6 @@
     <!-- Twitter consumer key and secret -->
     <string name="twitter_consumer_key" translatable="false">YOUR_CONSUMER_KEY</string>
     <string name="twitter_consumer_secret" translatable="false">YOUR_CONSUMER_SECRET</string>
+    <string name="title_activity_nlu__gui">NLU_GUI</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>

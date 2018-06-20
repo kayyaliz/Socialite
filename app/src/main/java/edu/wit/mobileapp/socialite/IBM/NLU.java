@@ -55,7 +55,6 @@ public class NLU extends AsyncTask<String, Void, Void> {
                 "11f6f8e0-24bc-414c-88a4-108ec3124d34",
                 "uQT4h6Oc8qtA"
         );
-        Log.v("NLU", text);
         EntitiesOptions entitiesOptions = new EntitiesOptions.Builder()
                 .emotion(true)
                 .sentiment(true)
