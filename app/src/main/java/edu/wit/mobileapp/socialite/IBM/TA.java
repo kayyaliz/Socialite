@@ -10,7 +10,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import com.google.firebase.database.ServerValue;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.ToneAnalyzer;
+import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneAnalysis;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneChatOptions;
+import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneOptions;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.Utterance;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.UtteranceAnalyses;
 
@@ -49,21 +51,25 @@ public class TA extends AsyncTask<String, Void, Void>{
                 "h2X0mSzGug4O");
         Log.v("TA", text);
 
-        String [] sentences = text.split("(?<=\\.\\s)|(?<=[?!]\\s)");
-        List<Utterance> utterances = new ArrayList<Utterance>();
+//        String [] sentences = text.split("(?<=\\.\\s)|(?<=[?!]\\s)");
+//        List<Utterance> utterances = new ArrayList<Utterance>();
+//
+//        for (int i=0; i < sentences.length; i++)
+//        {
+//            utterances.add(new Utterance.Builder()
+//                    .text(sentences[i])
+//                    .user("agent")
+//                    .build());
+//        }
+//
+//        ToneChatOptions toneChatOptions = new ToneChatOptions.Builder()
+//                .utterances(utterances)
+//                .build();
+//        UtteranceAnalyses utterancesTone = service.toneChat(toneChatOptions).execute();
+//        System.out.println(utterancesTone);
 
-        for (int i=0; i < sentences.length; i++)
-        {
-            utterances.add(new Utterance.Builder()
-                    .text(sentences[i])
-                    .user("agent")
-                    .build());
-        }
-
-        ToneChatOptions toneChatOptions = new ToneChatOptions.Builder()
-                .utterances(utterances)
-                .build();
-        UtteranceAnalyses utterancesTone = service.toneChat(toneChatOptions).execute();
+        ToneOptions toneOptions = new ToneOptions.Builder().text(text).build();
+        ToneAnalysis utterancesTone = service.tone(toneOptions).execute();
         System.out.println(utterancesTone);
 
         if (user != null){
@@ -77,7 +83,7 @@ public class TA extends AsyncTask<String, Void, Void>{
         return null;
     }
 
-    private void storeInDb(String uid, UtteranceAnalyses utterancesTone) {
+    private void storeInDb(String uid, ToneAnalysis utterancesTone) {
         Map<String, String> timestamp = ServerValue.TIMESTAMP;
         DatabaseReference PostRef = db_ref.child(uid).child("TA_Data").push();
         PostRef.child("data").setValue(utterancesTone);
