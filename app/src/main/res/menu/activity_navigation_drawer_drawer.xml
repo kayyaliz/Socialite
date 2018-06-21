@@ -5,15 +5,19 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_nlu"
             android:icon="@drawable/ic_mic_none_black_24dp"
             android:title="NLU" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_ta"
             android:icon="@drawable/ic_record_voice_over_black_24dp"
             android:title="Tone Analyzer" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_testing"
             android:icon="@drawable/ic_create_black_24dp"
             android:title="Testing" />
     </group>
@@ -21,7 +25,7 @@
     <item android:title="Other">
         <menu>
             <item
-                android:id="@+id/nav_manage"
+                android:id="@+id/nav_settings"
                 android:icon="@drawable/ic_menu_manage"
                 android:title="Settings" />
             <item
