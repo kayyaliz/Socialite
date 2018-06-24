@@ -12,7 +12,6 @@
         layout="@layout/app_bar_navigation_drawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
@@ -21,6 +20,35 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_navigation_drawer"
         app:menu="@menu/activity_navigation_drawer_drawer" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="75dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Date Range"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <Spinner
+            android:id="@+id/Date_RangeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/NLU_Emotion_Chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
 
 </android.support.v4.widget.DrawerLayout>
