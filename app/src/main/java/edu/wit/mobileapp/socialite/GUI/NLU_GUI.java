@@ -32,6 +32,7 @@ import android.widget.TextView;
 import com.firebase.ui.auth.AuthUI;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.charts.RadarChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -161,15 +162,19 @@ public class NLU_GUI extends AppCompatActivity implements NavigationView.OnNavig
                 entries.add(new PieEntry(Fear, "Fear"));
                 entries.add(new PieEntry(Joy, "Joy"));
                 entries.add(new PieEntry(Sadness, "Sadness"));
-                final int[] MY_COLORS = {Color.RED, Color.YELLOW, Color.MAGENTA,
-                        Color.GREEN, Color.BLUE};
+                final int[] MY_COLORS = {Color.parseColor("#BA1200"), Color.parseColor("#248232"), Color.parseColor("#9649CB"),
+                        Color.parseColor("#F0C808"), Color.parseColor("#004E89")};
                 ArrayList<Integer> colors = new ArrayList<Integer>();
 
                 for(int c: MY_COLORS) colors.add(c);
 
                 PieDataSet set = new PieDataSet(entries, "Emotion Results");
+                set.setValueTextSize(15f);
                 set.setColors(colors);
                 PieData data = new PieData(set);
+                Legend legend = emotionChart.getLegend();
+                emotionChart.getDescription().setText("");
+                legend.setEnabled(false);
                 emotionChart.setData(data);
                 emotionChart.invalidate(); // refresh
             }

@@ -36,11 +36,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Select Date Range"
-            android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/Date_RangeSpinner"
+            style="@android:style/Widget.Holo.Light.Spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
