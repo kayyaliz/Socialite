@@ -50,7 +50,11 @@
         <activity
             android:name="edu.wit.mobileapp.socialite.GUI.NLU_GUI"
             android:label="@string/title_activity_nlu__gui"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="edu.wit.mobileapp.socialite.GUI.TA_GUI"
+            android:label="@string/title_activity_ta__gui"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

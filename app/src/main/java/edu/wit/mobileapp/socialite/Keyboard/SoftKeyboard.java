@@ -706,7 +706,6 @@ public class SoftKeyboard extends InputMethodService
     }
 
     private void submitData() {
-        Log.d("Submission", "submissionString");
         if(!submissionString.isEmpty() && !alreadyExecuted) {
             alreadyExecuted = true;
             NLU NLUhandler = new NLU(submissionString);
