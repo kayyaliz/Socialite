@@ -142,11 +142,13 @@ public class NLU_GUI extends AppCompatActivity implements NavigationView.OnNavig
                 for(DataSnapshot instance: dataSnapshot.getChildren()) {
                     DataSnapshot data = instance.child("data").child("keywords");
                     for (DataSnapshot keywords: data.getChildren()) {
-                        Anger += keywords.child("emotion").child("anger").getValue(Float.class);
-                        Disgust += keywords.child("emotion").child("disgust").getValue(Float.class);
-                        Fear += keywords.child("emotion").child("fear").getValue(Float.class);
-                        Joy += keywords.child("emotion").child("joy").getValue(Float.class);
-                        Sadness += keywords.child("emotion").child("sadness").getValue(Float.class);
+                        if (keywords.hasChild("emotion")) {
+                            Anger += keywords.child("emotion").child("anger").getValue(Float.class);
+                            Disgust += keywords.child("emotion").child("disgust").getValue(Float.class);
+                            Fear += keywords.child("emotion").child("fear").getValue(Float.class);
+                            Joy += keywords.child("emotion").child("joy").getValue(Float.class);
+                            Sadness += keywords.child("emotion").child("sadness").getValue(Float.class);
+                        }
                     }
                 }
                 float Total = Anger + Disgust + Fear + Joy + Sadness;
