@@ -65,17 +65,17 @@ public class NLU_GUI extends AppCompatActivity implements NavigationView.OnNavig
         setSupportActionBar(toolbar);
 
         //NAVIGATION DRAWER SETUP START
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_content);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.NLU_Drawer_Layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.NLU_Nav_View);
         navigationView.setNavigationItemSelectedListener(this);
         //NAVIGATION DRAWER SETUP END
 
-        //SPINNER FOR DATE FIELDS
+//        //SPINNER FOR DATE FIELDS
         final Spinner dateRangeSpinner = (Spinner) findViewById(R.id.Date_RangeSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.DateRangeArray, android.R.layout.simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -113,7 +113,6 @@ public class NLU_GUI extends AppCompatActivity implements NavigationView.OnNavig
                     default:
                         startTime = 0L;
                 }
-                Log.v("STARTTIME", String.valueOf(startTime));
                 loadViews(emotionChart, startTime);
             }
 
@@ -188,7 +187,7 @@ public class NLU_GUI extends AppCompatActivity implements NavigationView.OnNavig
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.NLU_Drawer_Layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -249,7 +248,7 @@ public class NLU_GUI extends AppCompatActivity implements NavigationView.OnNavig
                     });
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_content);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.NLU_Drawer_Layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
