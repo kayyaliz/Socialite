@@ -51,23 +51,6 @@ public class TA extends AsyncTask<String, Void, Void>{
                 "h2X0mSzGug4O");
         Log.v("TA", text);
 
-//        String [] sentences = text.split("(?<=\\.\\s)|(?<=[?!]\\s)");
-//        List<Utterance> utterances = new ArrayList<Utterance>();
-//
-//        for (int i=0; i < sentences.length; i++)
-//        {
-//            utterances.add(new Utterance.Builder()
-//                    .text(sentences[i])
-//                    .user("agent")
-//                    .build());
-//        }
-//
-//        ToneChatOptions toneChatOptions = new ToneChatOptions.Builder()
-//                .utterances(utterances)
-//                .build();
-//        UtteranceAnalyses utterancesTone = service.toneChat(toneChatOptions).execute();
-//        System.out.println(utterancesTone);
-
         ToneOptions toneOptions = new ToneOptions.Builder().text(text).build();
         ToneAnalysis utterancesTone = service.tone(toneOptions).execute();
         System.out.println(utterancesTone);

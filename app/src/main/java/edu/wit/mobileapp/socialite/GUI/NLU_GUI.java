@@ -235,7 +235,8 @@ public class NLU_GUI extends AppCompatActivity implements NavigationView.OnNavig
             Intent myIntent = new Intent(this, TA_GUI.class);
             startActivity(myIntent);
         } else if (id == R.id.nav_testing) {
-
+            Intent myIntent = new Intent(this, Testing_GUI.class);
+            startActivity(myIntent);
         } else if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_share) {
