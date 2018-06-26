@@ -1,6 +1,7 @@
 package edu.wit.mobileapp.socialite.GUI;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -120,7 +121,8 @@ public class TA_GUI extends AppCompatActivity implements NavigationView.OnNaviga
                     entries.add(new BarEntry(1f, confident));
                     entries.add(new BarEntry(2f, tentative));
 
-                    BarDataSet set = new BarDataSet(entries, "AHHHHHHHHH");
+                    BarDataSet set = new BarDataSet(entries, "Socialite");
+
                     BarData data = new BarData(set);
                     data.setBarWidth(0.9f); // set custom bar width
                     Legend legend = barChart.getLegend();
@@ -135,11 +137,24 @@ public class TA_GUI extends AppCompatActivity implements NavigationView.OnNaviga
                     xVals.add("Confident");
                     xVals.add("Tentative");
 
+                    // Create colors for each bar
+                    final int[] MY_COLORS = {Color.parseColor("#ff6666"), Color.parseColor("#6699ff"), Color.parseColor("#ffff99")};
+                    ArrayList<Integer> colors = new ArrayList<Integer>();
+
+                    for(int c: MY_COLORS) colors.add(c);
+
+                    set.setValueTextSize(15f);
+                    set.setColors(colors);
+
                     // Display labels for bars
                     barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(xVals));
 
+
+                    // Define xAxis Properties
                     XAxis xAxis = barChart.getXAxis();
                     xAxis.setGranularity(1f);
+                    xAxis.setYOffset(1f);
+                    xAxis.setTextSize(15f);
 
                     // Hide grid lines
                     barChart.getAxisLeft().setEnabled(false);
@@ -148,7 +163,6 @@ public class TA_GUI extends AppCompatActivity implements NavigationView.OnNaviga
                     barChart.getDescription().setEnabled(false);
                     // Hide graph legend
                     barChart.getLegend().setEnabled(false);
-
                     barChart.setFitBars(true); // make the x-axis fit exactly all bars
                     barChart.invalidate(); // refresh
                 }
@@ -160,7 +174,7 @@ public class TA_GUI extends AppCompatActivity implements NavigationView.OnNaviga
 
             });
 
-//            entries.add(new BarEntry(0f, ));
+//        entries.add(new BarEntry(0f, ));
 //        entries.add(new BarEntry(1f, 80f));
 //        entries.add(new BarEntry(2f, 60f));
 //        entries.add(new BarEntry(3f, 50f));
