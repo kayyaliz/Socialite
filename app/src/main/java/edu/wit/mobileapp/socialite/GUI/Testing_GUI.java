@@ -9,15 +9,28 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.AnalysisResults;
+import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneAnalysis;
 
+import java.util.concurrent.ExecutionException;
+
+import edu.wit.mobileapp.socialite.IBM.NLU;
+import edu.wit.mobileapp.socialite.IBM.TA;
 import edu.wit.mobileapp.socialite.Keyboard.R;
 
 public class Testing_GUI extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    Button clickButton;
+    EditText textSubmission;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +47,34 @@ public class Testing_GUI extends AppCompatActivity implements NavigationView.OnN
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.testing_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        textSubmission = (EditText) findViewById(R.id.SampleText);
+
+        clickButton = (Button) findViewById(R.id.submitText_Button);
+
+        clickButton.setOnClickListener( new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                String submissionText = textSubmission.getText().toString();
+                if(!submissionText.isEmpty()) {
+                    NLU NLUhandler = new NLU(submissionText);
+                    TA TAhandler = new TA(submissionText);
+
+                    try {
+                        AnalysisResults NLU_results = NLUhandler.execute().get();
+                        ToneAnalysis TA_Results = TAhandler.execute().get();
+                        Log.v("TA_Results", TA_Results.toString());
+                        Log.v("NLU_results", NLU_results.toString());
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        });
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

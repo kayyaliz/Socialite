@@ -29,7 +29,7 @@ import java.sql.Time;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NLU extends AsyncTask<String, Void, Void> {
+public class NLU extends AsyncTask<String, String, AnalysisResults> {
     private String text = "";
     public FirebaseUser user;
 
@@ -49,7 +49,7 @@ public class NLU extends AsyncTask<String, Void, Void> {
     }
 
     @Override
-    protected Void doInBackground(String... strings) {
+    protected AnalysisResults doInBackground(String... strings) {
         service = new NaturalLanguageUnderstanding(
                 "2018-03-16",
                 "11f6f8e0-24bc-414c-88a4-108ec3124d34",
@@ -85,7 +85,7 @@ public class NLU extends AsyncTask<String, Void, Void> {
         } else {
             //What do?
         }
-        return null;
+        return response;
     }
 
     private void storeInDB(String uid, AnalysisResults response) {
