@@ -9,11 +9,28 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.firebase.ui.auth.AuthUI;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.PieEntry;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import edu.wit.mobileapp.socialite.Keyboard.R;
 
@@ -34,6 +51,115 @@ public class TA_GUI extends AppCompatActivity implements NavigationView.OnNaviga
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.ta_gui_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //Create BarChart
+        BarChart barChart = (BarChart) findViewById(R.id.TA_Language_Chart);
+
+        loadView(barChart);
+
+    }
+
+    private void loadView(final BarChart barChart) {
+        final List<BarEntry> entries = new ArrayList<>();
+
+        // Instantiate Discard Array
+        final List<String> discard = new ArrayList<>();
+        discard.add("anger");
+        discard.add("disgust");
+        discard.add("fear");
+        discard.add("joy");
+        discard.add("sadness");
+
+        // Database stuff
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("TA_Data");
+
+            // Attach a listener to read the data at our posts reference
+            reference.orderByChild("Timestamp").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    //Lang Variables
+                    float analytical=0f;
+                    float confident=0f;
+                    float tentative=0f;
+                    float total=0f;
+                    //Get the data
+                    for(DataSnapshot instance: dataSnapshot.getChildren()) {
+                        DataSnapshot count = instance.child("data").child("documentTone");
+
+                        //Get total amount of documentTones
+                        for (DataSnapshot c: count.getChildren()){
+                            total+= (float)1.0;
+                        }
+
+                        DataSnapshot data = instance.child("data").child("documentTone").child("tones");
+                        for (DataSnapshot tones: data.getChildren()) {
+
+                            String t_id = tones.child("toneId").getValue(String.class);
+
+                            if (!(discard.contains(t_id))) {
+                                switch (t_id){
+                                    case "analytical":
+                                        analytical += (float) 1.0;
+                                        break;
+                                    case "confident":
+                                        confident += (float) 1.0;
+                                        break;
+                                    case "tentative":
+                                        tentative += (float) 1.0;
+                                        break;
+                                    default:
+                                }
+                            }
+                        }
+                    }
+                    entries.add(new BarEntry(0f, analytical));
+                    entries.add(new BarEntry(1f, confident));
+                    entries.add(new BarEntry(2f, tentative));
+                    BarDataSet set = new BarDataSet(entries, "BarDataSet");
+                    BarData data = new BarData(set);
+                    data.setBarWidth(0.9f); // set custom bar width
+                    Legend legend = barChart.getLegend();
+                    barChart.getDescription().setText("");
+                    legend.setEnabled(false);
+                    barChart.setData(data);
+                    barChart.setFitBars(true); // make the x-axis fit exactly all bars
+                    barChart.invalidate(); // refresh
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    System.out.println("The read failed: " + databaseError.getCode());
+                }
+
+            });
+
+//            entries.add(new BarEntry(0f, ));
+//        entries.add(new BarEntry(1f, 80f));
+//        entries.add(new BarEntry(2f, 60f));
+//        entries.add(new BarEntry(3f, 50f));
+//        // gap of 2f
+//        entries.add(new BarEntry(5f, 70f));
+//        entries.add(new BarEntry(6f, 80f));
+//        entries.add(new BarEntry(7f, 10f));
+//        entries.add(new BarEntry(8f, 20f));
+//        entries.add(new BarEntry(9f, 60f));
+//        entries.add(new BarEntry(10f, 50f));
+//        // gap of 2f
+//        entries.add(new BarEntry(11f, 70f));
+//        entries.add(new BarEntry(12f, 60f));
+//
+//        BarDataSet set = new BarDataSet(entries, "BarDataSet");
+//        BarData data = new BarData(set);
+//        data.setBarWidth(0.9f); // set custom bar width
+//        Legend legend = barChart.getLegend();
+//        barChart.getDescription().setText("");
+//        legend.setEnabled(false);
+//        barChart.setData(data);
+//        barChart.setFitBars(true); // make the x-axis fit exactly all bars
+//        barChart.invalidate(); // refresh
+
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

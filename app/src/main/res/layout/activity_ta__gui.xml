@@ -13,6 +13,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="75dp">
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/TA_Language_Chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
     <android.support.design.widget.NavigationView
         android:id="@+id/ta_gui_nav_view"
         android:layout_width="wrap_content"
