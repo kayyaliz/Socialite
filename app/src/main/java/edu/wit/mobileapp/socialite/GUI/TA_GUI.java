@@ -15,10 +15,12 @@ import android.view.MenuItem;
 import com.firebase.ui.auth.AuthUI;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -113,16 +115,40 @@ public class TA_GUI extends AppCompatActivity implements NavigationView.OnNaviga
                             }
                         }
                     }
+
                     entries.add(new BarEntry(0f, analytical));
                     entries.add(new BarEntry(1f, confident));
                     entries.add(new BarEntry(2f, tentative));
-                    BarDataSet set = new BarDataSet(entries, "BarDataSet");
+
+                    BarDataSet set = new BarDataSet(entries, "AHHHHHHHHH");
                     BarData data = new BarData(set);
                     data.setBarWidth(0.9f); // set custom bar width
                     Legend legend = barChart.getLegend();
                     barChart.getDescription().setText("");
                     legend.setEnabled(false);
                     barChart.setData(data);
+
+
+                    // Create the labels for the bars
+                    final ArrayList<String> xVals = new ArrayList<>();
+                    xVals.add("Analytical");
+                    xVals.add("Confident");
+                    xVals.add("Tentative");
+
+                    // Display labels for bars
+                    barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(xVals));
+
+                    XAxis xAxis = barChart.getXAxis();
+                    xAxis.setGranularity(1f);
+
+                    // Hide grid lines
+                    barChart.getAxisLeft().setEnabled(false);
+                    barChart.getAxisRight().setEnabled(false);
+                    // Hide graph description
+                    barChart.getDescription().setEnabled(false);
+                    // Hide graph legend
+                    barChart.getLegend().setEnabled(false);
+
                     barChart.setFitBars(true); // make the x-axis fit exactly all bars
                     barChart.invalidate(); // refresh
                 }
@@ -158,7 +184,6 @@ public class TA_GUI extends AppCompatActivity implements NavigationView.OnNaviga
 //        barChart.setData(data);
 //        barChart.setFitBars(true); // make the x-axis fit exactly all bars
 //        barChart.invalidate(); // refresh
-
 
     }
 
