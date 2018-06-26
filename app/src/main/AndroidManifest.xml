@@ -34,8 +34,8 @@
 
         <activity
             android:name="edu.wit.mobileapp.socialite.GUI.LoginActivity"
-            android:label="@string/title_activity_login"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:label="@string/app_name"
+            android:theme="@style/AppCompat.Light"
             android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,15 +46,18 @@
         <activity
             android:name="edu.wit.mobileapp.socialite.GUI.Home"
             android:label="@string/title_activity_navigation_drawer"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppCompat.Light" />
         <activity
             android:name="edu.wit.mobileapp.socialite.GUI.NLU_GUI"
             android:label="@string/title_activity_nlu__gui"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppCompat.Light" />
         <activity
             android:name="edu.wit.mobileapp.socialite.GUI.TA_GUI"
             android:label="@string/title_activity_ta__gui"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppCompat.Light" />
+        <activity android:name="edu.wit.mobileapp.socialite.GUI.Testing_GUI"
+            android:label="@string/title_activity_testing__gui"
+            android:theme="@style/AppCompat.Light"></activity>
     </application>
 
 </manifest>
