@@ -73,4 +73,7 @@
 
     <string name="title_activity_ta__gui">Tone Analyzer</string>
     <string name="title_activity_testing__gui">Test Suite</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
