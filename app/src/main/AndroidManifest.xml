@@ -44,7 +44,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="edu.wit.mobileapp.socialite.GUI.Home"
+            android:name="edu.wit.mobileapp.socialite.GUI.Home_GUI"
             android:label="@string/title_activity_navigation_drawer"
             android:theme="@style/AppCompat.Light" />
         <activity

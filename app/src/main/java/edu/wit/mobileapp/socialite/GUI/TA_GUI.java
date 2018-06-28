@@ -10,7 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.firebase.ui.auth.AuthUI;
@@ -20,7 +19,6 @@ import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -171,34 +169,7 @@ public class TA_GUI extends AppCompatActivity implements NavigationView.OnNaviga
                 public void onCancelled(DatabaseError databaseError) {
                     System.out.println("The read failed: " + databaseError.getCode());
                 }
-
             });
-
-//        entries.add(new BarEntry(0f, ));
-//        entries.add(new BarEntry(1f, 80f));
-//        entries.add(new BarEntry(2f, 60f));
-//        entries.add(new BarEntry(3f, 50f));
-//        // gap of 2f
-//        entries.add(new BarEntry(5f, 70f));
-//        entries.add(new BarEntry(6f, 80f));
-//        entries.add(new BarEntry(7f, 10f));
-//        entries.add(new BarEntry(8f, 20f));
-//        entries.add(new BarEntry(9f, 60f));
-//        entries.add(new BarEntry(10f, 50f));
-//        // gap of 2f
-//        entries.add(new BarEntry(11f, 70f));
-//        entries.add(new BarEntry(12f, 60f));
-//
-//        BarDataSet set = new BarDataSet(entries, "BarDataSet");
-//        BarData data = new BarData(set);
-//        data.setBarWidth(0.9f); // set custom bar width
-//        Legend legend = barChart.getLegend();
-//        barChart.getDescription().setText("");
-//        legend.setEnabled(false);
-//        barChart.setData(data);
-//        barChart.setFitBars(true); // make the x-axis fit exactly all bars
-//        barChart.invalidate(); // refresh
-
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -208,7 +179,7 @@ public class TA_GUI extends AppCompatActivity implements NavigationView.OnNaviga
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            Intent myIntent = new Intent(this, Home.class);
+            Intent myIntent = new Intent(this, Home_GUI.class);
             startActivity(myIntent);
         } else if (id == R.id.nav_nlu) {
             Intent myIntent = new Intent(this, NLU_GUI.class);
