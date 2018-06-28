@@ -75,7 +75,7 @@ public class Testing_Parent_GUI extends AppCompatActivity implements NavigationV
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            Intent myIntent = new Intent(this, Home.class);
+            Intent myIntent = new Intent(this, Home_GUI.class);
             startActivity(myIntent);
         } else if (id == R.id.nav_nlu) {
             Intent myIntent = new Intent(this, NLU_GUI.class);

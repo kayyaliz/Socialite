@@ -10,7 +10,6 @@ import android.widget.EditText;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
-import com.facebook.FacebookSdk;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -88,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void goToMain() {
-        Intent myIntent = new Intent(this, Home.class);
+        Intent myIntent = new Intent(this, Home_GUI.class);
         startActivity(myIntent);
     }
 
