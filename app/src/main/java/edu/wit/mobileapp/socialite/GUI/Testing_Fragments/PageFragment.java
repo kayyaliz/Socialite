@@ -46,63 +46,9 @@ public class PageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View viewDataEntry = inflater.inflate(R.layout.fragment_testing_data_entry, container, false);
-        View view_nlu = inflater.inflate(R.layout.fragment_testing_nlu, container, false);
-        View view_ta = inflater.inflate(R.layout.fragment_testing_ta, container, false);
-
-
-        ExpandableListAdapter listAdapter;
-        ExpandableListView NLU_exp_list_view;
-        final List<String> NLU_listDataHeader = null;
-        HashMap<String, List<String>> NLU_listDataChild;
-
-
-        if (mPage == 1) {
-            Button clickButton;
-            final EditText textSubmission;
-
-            textSubmission = (EditText) viewDataEntry.findViewById(R.id.SampleText);
-            clickButton = (Button) viewDataEntry.findViewById(R.id.submitText_Button);
-
-            clickButton.setOnClickListener( new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    String submissionText = textSubmission.getText().toString();
-                    if(!submissionText.isEmpty()) {
-                        NLU NLUhandler = new NLU(submissionText);
-                        TA TAhandler = new TA(submissionText);
-                        try {
-                            AnalysisResults NLU_results = NLUhandler.execute().get();
-                            ToneAnalysis TA_Results = TAhandler.execute().get();
-                            for(int i = 0; i < NLU_results.getEntities().size(); i++) {
-                                NLU_listDataHeader.add("Insight " + i);
-                                List<String> EmotionArr = new ArrayList<String>();
-                                Double Anger = NLU_results.getEntities().get(i).getEmotion().getAnger();
-                                Double Disgust = NLU_results.getEntities().get(i).getEmotion().getDisgust();
-                                Double Fear = NLU_results.getEntities().get(i).getEmotion().getFear();
-                                Double Joy = NLU_results.getEntities().get(i).getEmotion().getJoy();
-                                Double Sadness = NLU_results.getEntities().get(i).getEmotion().getSadness();
-                            }
-                            Log.v("TA_Results", TA_Results.toString());
-                            Log.v("NLU_results", NLU_results.toString());
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        } catch (ExecutionException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }
-            });
-            return viewDataEntry;
-        } else if (mPage == 2) {
-            NLU_exp_list_view = (ExpandableListView) view_nlu.findViewById(R.id.testing_nlu_expandable_list_view);
-
-            return view_nlu;
-        } else {
-            return view_ta;
-        }
+        View view = inflater.inflate(R.layout.fragment_testing_nlu, container, false);
+//        TextView textView = (TextView) view;
+//        textView.setText("Fragment #" + mPage);
+        return view;
     }
 }

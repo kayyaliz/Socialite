@@ -19,25 +19,27 @@ import com.google.android.gms.tasks.Task;
 
 import junit.framework.Test;
 
+import edu.wit.mobileapp.socialite.GUI.Testing_Fragments.Test_DataEntryFragment;
+import edu.wit.mobileapp.socialite.GUI.Testing_Fragments.Test_NLU_Fragment;
+import edu.wit.mobileapp.socialite.GUI.Testing_Fragments.Test_TA_Fragment;
 import edu.wit.mobileapp.socialite.GUI.Testing_Fragments.TestingFragmentAdapter;
 import edu.wit.mobileapp.socialite.Keyboard.R;
 
-public class Testing_Parent_GUI extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class Testing_Parent_GUI extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, Test_DataEntryFragment.SendMessage{
 
+
+    public static String POSITION = "POSITION";
     TabLayout tabLayout;
     ViewPager viewPager;
-    public static String POSITION = "POSITION";
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_testing__parent__gui);
+        setContentView(R.layout.activity_testing_parent_gui);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.testing_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.testing_GUI);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -101,8 +103,18 @@ public class Testing_Parent_GUI extends AppCompatActivity implements NavigationV
                     });
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.testing_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.testing_GUI);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void sendData(String message) {
+        String nlu_tag = "android:switcher:" + R.id.testing_parent_viewpager + ":" + 1;
+        String ta_tag = "android:switcher:" + R.id.testing_parent_viewpager + ":" + 2;
+        Test_NLU_Fragment nlu_frag = (Test_NLU_Fragment) getSupportFragmentManager().findFragmentByTag(nlu_tag);
+        Test_TA_Fragment ta_frag = (Test_TA_Fragment) getSupportFragmentManager().findFragmentByTag(ta_tag);
+        nlu_frag.displayReceivedData(message);
+        ta_frag.displayReceivedData(message);
     }
 }
