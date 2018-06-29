@@ -39,44 +39,44 @@ public class Test_NLU_Fragment extends Fragment {
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
 
-        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v,
-                                        int groupPosition, int childPosition, long id) {
-                Toast.makeText(
-                        getActivity(),
-                        listDataHeader.get(groupPosition)
-                                + " : "
-                                + listDataChild.get(
-                                listDataHeader.get(groupPosition)).get(
-                                childPosition), Toast.LENGTH_SHORT)
-                        .show();
-                return false;
-            }
-        });
-
-        // Listview Group expanded listener
-        expListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-
-            @Override
-            public void onGroupExpand(int groupPosition) {
-                Toast.makeText(getActivity(),
-                        listDataHeader.get(groupPosition) + " Expanded",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        expListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
-
-            @Override
-            public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(getActivity(),
-                        listDataHeader.get(groupPosition) + " Collapsed",
-                        Toast.LENGTH_SHORT).show();
-
-            }
-        });
+//        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+//
+//            @Override
+//            public boolean onChildClick(ExpandableListView parent, View v,
+//                                        int groupPosition, int childPosition, long id) {
+//                Toast.makeText(
+//                        getActivity(),
+//                        listDataHeader.get(groupPosition)
+//                                + " : "
+//                                + listDataChild.get(
+//                                listDataHeader.get(groupPosition)).get(
+//                                childPosition), Toast.LENGTH_SHORT)
+//                        .show();
+//                return false;
+//            }
+//        });
+//
+//        // Listview Group expanded listener
+//        expListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+//
+//            @Override
+//            public void onGroupExpand(int groupPosition) {
+//                Toast.makeText(getActivity(),
+//                        listDataHeader.get(groupPosition) + " Expanded",
+//                        Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        expListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
+//
+//            @Override
+//            public void onGroupCollapse(int groupPosition) {
+//                Toast.makeText(getActivity(),
+//                        listDataHeader.get(groupPosition) + " Collapsed",
+//                        Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
 
         return rootView;
     }
@@ -96,45 +96,54 @@ public class Test_NLU_Fragment extends Fragment {
     {
         try {
             AnalysisResults NLU_results = new NLU(message).execute().get();
+            Toast.makeText(getActivity(),
+                        "NLU Response Received!",
+                        Toast.LENGTH_SHORT).show();
             Log.v("NLU_Results", NLU_results.toString());
             listDataHeader.clear();
             listDataChild.clear();
             if (NLU_results.getKeywords().size() > 0 || NLU_results.getEntities().size() > 0) {
                 for(int i = 0; i < NLU_results.getKeywords().size(); i++) {
                     listDataHeader.add("Keyword: " + NLU_results.getKeywords().get(i).getText());
-                    List<String> EmotionArr = new ArrayList<String>();
-                    EmotionArr.add("Anger: " + NLU_results.getKeywords().get(i).getEmotion().getAnger().toString());
-                    EmotionArr.add("Disgust: " + NLU_results.getKeywords().get(i).getEmotion().getDisgust().toString());
-                    EmotionArr.add("Fear: " + NLU_results.getKeywords().get(i).getEmotion().getFear().toString());
-                    EmotionArr.add("Joy: " + NLU_results.getKeywords().get(i).getEmotion().getJoy().toString());
-                    EmotionArr.add("Sadness: " + NLU_results.getKeywords().get(i).getEmotion().getSadness().toString());
-                    EmotionArr.add("Relevance: " + NLU_results.getKeywords().get(i).getRelevance().toString());
-                    EmotionArr.add("Sentiment: " + NLU_results.getKeywords().get(i).getSentiment().getScore().toString());
-                    listDataChild.put(listDataHeader.get(i), EmotionArr);
+                    List<String> KeywordArr = new ArrayList<String>();
+                    KeywordArr.add("Anger: " +NLU_results.getKeywords().get(i).getEmotion().getAnger().toString());
+                    KeywordArr.add("Disgust: " + NLU_results.getKeywords().get(i).getEmotion().getDisgust().toString());
+                    KeywordArr.add("Fear: " + NLU_results.getKeywords().get(i).getEmotion().getFear().toString());
+                    KeywordArr.add("Joy: " + NLU_results.getKeywords().get(i).getEmotion().getJoy().toString());
+                    KeywordArr.add("Sadness: " + NLU_results.getKeywords().get(i).getEmotion().getSadness().toString());
+                    KeywordArr.add("Relevance: " + NLU_results.getKeywords().get(i).getRelevance().toString());
+                    KeywordArr.add("Sentiment: " + NLU_results.getKeywords().get(i).getSentiment().getScore().toString());
+                    listDataChild.put(listDataHeader.get(listDataHeader.size()-1), KeywordArr);
                 }
                 for(int i = 0; i < NLU_results.getEntities().size(); i++) {
                     listDataHeader.add("Entity: " + NLU_results.getEntities().get(i).getText().trim());
-                    List<String> EmotionArr = new ArrayList<String>();
-                    EmotionArr.add("Type: " + NLU_results.getEntities().get(i).getType().trim());
-                    EmotionArr.add("Anger: " + NLU_results.getEntities().get(i).getEmotion().getAnger().toString());
-                    EmotionArr.add("Disgust: " + NLU_results.getEntities().get(i).getEmotion().getDisgust().toString());
-                    EmotionArr.add("Fear: " + NLU_results.getEntities().get(i).getEmotion().getFear().toString());
-                    EmotionArr.add("Joy: " + NLU_results.getEntities().get(i).getEmotion().getJoy().toString());
-                    EmotionArr.add("Sadness: " + NLU_results.getEntities().get(i).getEmotion().getSadness().toString());
-//                    EmotionArr.add("Relevance: " + NLU_results.getEntities().get(i).getRelevance().toString());
-//                    EmotionArr.add("Sentiment: " + NLU_results.getEntities().get(i).getSentiment().getScore().toString());
-                    listDataChild.put(listDataHeader.get(i), EmotionArr);
+                    List<String> EntityArr = new ArrayList<String>();
+                    EntityArr.add("Type: " + NLU_results.getEntities().get(i).getType().trim());
+                    EntityArr.add("Anger: " + NLU_results.getEntities().get(i).getEmotion().getAnger().toString());
+                    EntityArr.add("Disgust: " + NLU_results.getEntities().get(i).getEmotion().getDisgust().toString());
+                    EntityArr.add("Fear: " + NLU_results.getEntities().get(i).getEmotion().getFear().toString());
+                    EntityArr.add("Joy: " + NLU_results.getEntities().get(i).getEmotion().getJoy().toString());
+                    EntityArr.add("Sadness: " + NLU_results.getEntities().get(i).getEmotion().getSadness().toString());
+                    EntityArr.add("Relevance: " + NLU_results.getEntities().get(i).getRelevance().toString());
+                    EntityArr.add("Sentiment: " + NLU_results.getEntities().get(i).getSentiment().getScore().toString());
+                    listDataChild.put(listDataHeader.get(listDataHeader.size()-1), EntityArr);
                 }
             } else {
                 listDataHeader.add("No Insights");
-                List<String> EmotionArr = new ArrayList<String>();
-                EmotionArr.add("No natural language emotion insights could be found on the the text \"" + message + "\". Try entering more data!");
-                listDataChild.put(listDataHeader.get(0), EmotionArr);
+                List<String> InfoArr = new ArrayList<String>();
+                InfoArr.add("No natural language emotion insights could be found on the the text \"" + message + "\". Try entering more data!");
+                listDataChild.put(listDataHeader.get(0), InfoArr);
             }
             listAdapter.notifyDataSetChanged();
         } catch (InterruptedException e) {
+            Toast.makeText(getActivity(),
+                    "NLU Response Failed!",
+                    Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         } catch (ExecutionException e) {
+            Toast.makeText(getActivity(),
+                    "NLU Response Failed!",
+                    Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
