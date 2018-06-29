@@ -115,6 +115,6 @@ public class Testing_Parent_GUI extends AppCompatActivity implements NavigationV
         Test_NLU_Fragment nlu_frag = (Test_NLU_Fragment) getSupportFragmentManager().findFragmentByTag(nlu_tag);
         Test_TA_Fragment ta_frag = (Test_TA_Fragment) getSupportFragmentManager().findFragmentByTag(ta_tag);
         nlu_frag.displayReceivedData(message);
-        ta_frag.displayReceivedData(message);
+       // ta_frag.displayReceivedData(message);
     }
 }

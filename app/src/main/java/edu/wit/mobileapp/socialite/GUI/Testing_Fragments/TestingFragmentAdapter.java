@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class TestingFragmentAdapter extends FragmentPagerAdapter {
     final int PAGE_COUNT = 3;
-    private String tabTitles[] = new String[] { "Data", "NLU", "Tone" };
+    private String tabTitles[] = new String[] { "Data Entry", "NLU", "Tone Analyzer" };
     private Context context;
 
     public TestingFragmentAdapter(FragmentManager fm, Context context) {
@@ -22,7 +22,6 @@ public class TestingFragmentAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-//        return PageFragment.newInstance(position + 1);
         Fragment fragment = null;
         if (position == 0) {
             fragment = new Test_DataEntryFragment();
