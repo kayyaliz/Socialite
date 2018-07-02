@@ -19,7 +19,7 @@
         <item
             android:id="@+id/nav_testing"
             android:icon="@drawable/ic_create_black_24dp"
-            android:title="Testing" />
+            android:title="Testing Suite" />
     </group>
 
     <item android:title="Other">
