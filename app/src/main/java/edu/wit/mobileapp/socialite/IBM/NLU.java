@@ -94,5 +94,4 @@ public class NLU extends AsyncTask<String, String, AnalysisResults> {
         PostRef.child("data").setValue(response);
         PostRef.child("Timestamp").setValue(timestamp);
     }
-
 }

@@ -38,46 +38,6 @@ public class Test_NLU_Fragment extends Fragment {
         expListView = (ExpandableListView) rootView.findViewById(R.id.testing_nlu_expandable_list_view);
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
-
-//        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-//
-//            @Override
-//            public boolean onChildClick(ExpandableListView parent, View v,
-//                                        int groupPosition, int childPosition, long id) {
-//                Toast.makeText(
-//                        getActivity(),
-//                        listDataHeader.get(groupPosition)
-//                                + " : "
-//                                + listDataChild.get(
-//                                listDataHeader.get(groupPosition)).get(
-//                                childPosition), Toast.LENGTH_SHORT)
-//                        .show();
-//                return false;
-//            }
-//        });
-//
-//        // Listview Group expanded listener
-//        expListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-//
-//            @Override
-//            public void onGroupExpand(int groupPosition) {
-//                Toast.makeText(getActivity(),
-//                        listDataHeader.get(groupPosition) + " Expanded",
-//                        Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        expListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
-//
-//            @Override
-//            public void onGroupCollapse(int groupPosition) {
-//                Toast.makeText(getActivity(),
-//                        listDataHeader.get(groupPosition) + " Collapsed",
-//                        Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-
         return rootView;
     }
 

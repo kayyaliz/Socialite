@@ -29,12 +29,6 @@ import edu.wit.mobileapp.socialite.Keyboard.R;
 
 public class Test_DataEntryFragment extends Fragment {
     SendMessage SM;
-
-    ExpandableListAdapter listAdapter;
-    ExpandableListView NLU_exp_list_view;
-    final List<String> NLU_listDataHeader = null;
-    HashMap<String, List<String>> NLU_listDataChild;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

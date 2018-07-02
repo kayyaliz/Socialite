@@ -24,25 +24,23 @@ import java.util.List;
 import java.util.Map;
 
 public class TA extends AsyncTask<String, String, ToneAnalysis> {
-    public String text = "";
-
+    private String text = "";
     public FirebaseUser user;
 
     public FirebaseDatabase database = FirebaseDatabase.getInstance();
     public DatabaseReference db_ref = database.getReference("Users");
 
-
     public ToneAnalyzer service;
-    List<Utterance> utteranceList;
+
+    public TA() {
+
+    }
 
     public TA(String text)
     {
         Log.v("TA", "Inside TA");
         this.text = text;
-        this.utteranceList = new ArrayList<Utterance>();
-
         user = FirebaseAuth.getInstance().getCurrentUser();
-
     }
 
     protected ToneAnalysis doInBackground(String... strings) {
@@ -50,12 +48,8 @@ public class TA extends AsyncTask<String, String, ToneAnalysis> {
                 "2017-09-21",
                 "90462232-3dca-4cea-9845-f83efd34b6f3",
                 "h2X0mSzGug4O");
-        Log.v("TA", text);
-
         ToneOptions toneOptions = new ToneOptions.Builder().text(text).build();
         ToneAnalysis documentTone = service.tone(toneOptions).execute();
-        System.out.println(documentTone);
-
         if (user != null){
             storeInDb(user.getUid(), documentTone);
         }
@@ -63,7 +57,6 @@ public class TA extends AsyncTask<String, String, ToneAnalysis> {
         {
 
         }
-
         return documentTone;
     }
 
@@ -72,6 +65,5 @@ public class TA extends AsyncTask<String, String, ToneAnalysis> {
         DatabaseReference PostRef = db_ref.child(uid).child("TA_Data").push();
         PostRef.child("data").setValue(utterancesTone);
         PostRef.child("Timestamp").setValue(timestamp);
-
     }
 }
