@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="Select Date Range"
+        android:textAlignment="center"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="24sp" />
+
+    <Spinner
+        android:id="@+id/NLU_Graph_DateRangeSpinner"
+        style="@android:style/Widget.Holo.Light.Spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/NLU_Emotion_Chart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

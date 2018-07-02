@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="DateRangeArray">
-        <item>All Time</item>
         <item>Last 24 Hours</item>
         <item>Last 7 Days</item>
         <item>Last 30 Days</item>
         <item>Last Year</item>
+        <item>All Time</item>
     </string-array>
 </resources>

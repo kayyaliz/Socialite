@@ -48,7 +48,7 @@
             android:label="@string/title_activity_navigation_drawer"
             android:theme="@style/AppCompat.Light" />
         <activity
-            android:name="edu.wit.mobileapp.socialite.GUI.NLU_GUI"
+            android:name="edu.wit.mobileapp.socialite.GUI.NLU_Parent_GUI"
             android:label="@string/title_activity_nlu__gui"
             android:theme="@style/AppCompat.Light" />
         <activity

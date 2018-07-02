@@ -36,7 +36,6 @@ import edu.wit.mobileapp.socialite.Keyboard.R;
 
 public class Testing_Parent_GUI extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, Test_DataEntryFragment.SendMessage{
 
-
     public static String POSITION = "POSITION";
     TabLayout tabLayout;
     ViewPager viewPager;
@@ -100,7 +99,7 @@ public class Testing_Parent_GUI extends AppCompatActivity implements NavigationV
             Intent myIntent = new Intent(this, Home_GUI.class);
             startActivity(myIntent);
         } else if (id == R.id.nav_nlu) {
-            Intent myIntent = new Intent(this, NLU_GUI.class);
+            Intent myIntent = new Intent(this, NLU_Parent_GUI.class);
             startActivity(myIntent);
         } else if (id == R.id.nav_ta) {
             Intent myIntent = new Intent(this, TA_GUI.class);

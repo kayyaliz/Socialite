@@ -182,7 +182,7 @@ public class TA_GUI extends AppCompatActivity implements NavigationView.OnNaviga
             Intent myIntent = new Intent(this, Home_GUI.class);
             startActivity(myIntent);
         } else if (id == R.id.nav_nlu) {
-            Intent myIntent = new Intent(this, NLU_GUI.class);
+            Intent myIntent = new Intent(this, NLU_Parent_GUI.class);
             startActivity(myIntent);
         } else if (id == R.id.nav_ta) {
             Intent myIntent = new Intent(this, TA_GUI.class);

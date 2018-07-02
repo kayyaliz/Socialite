@@ -2,85 +2,88 @@ package edu.wit.mobileapp.socialite.GUI;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
+import edu.wit.mobileapp.socialite.GUI.NLU_Fragments.NLUFragmentAdapter;
+import edu.wit.mobileapp.socialite.GUI.NLU_Fragments.NLU_Graph_Fragment;
+import edu.wit.mobileapp.socialite.GUI.Testing_Fragments.TestingFragmentAdapter;
 import edu.wit.mobileapp.socialite.Keyboard.R;
 
-public class Home_GUI extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class NLU_Parent_GUI extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    public static String POSITION = "POSITION";
+    TabLayout tabLayout;
+    ViewPager viewPager;
+
+    private int[] tabIcons = {
+            R.drawable.ic_pie_chart_outlined_white_24dp,
+            R.drawable.ic_format_list_numbered_white_24dp,
+            R.drawable.ic_info_outline_white_24dp
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_nlu_parent_gui);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.nlu_GUI);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        //Defines Logged In User Text View
-        TextView tv = (TextView)findViewById(R.id.login_indicator);
-        tv.setText("Logged in: " + (FirebaseAuth.getInstance().getCurrentUser().getEmail()));
-
-        loadView();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nlu_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // Get the ViewPager and set it's PagerAdapter so that it can display items
+        viewPager = (ViewPager) findViewById(R.id.nlu_parent_viewpager);
+        viewPager.setAdapter(new NLUFragmentAdapter(getSupportFragmentManager(),
+                NLU_Parent_GUI.this));
+        viewPager.setOffscreenPageLimit(3);
+
+        // Give the TabLayout the ViewPager
+        tabLayout = (TabLayout) findViewById(R.id.nlu_parent_tablayout);
+        tabLayout.setupWithViewPager(viewPager);
+
+        setupTabIcons();
     }
 
-    private void loadView() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid());
-
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                long nCount = dataSnapshot.child("NLU_Data").getChildrenCount();
-                long tCount = dataSnapshot.child("TA_Data").getChildrenCount();
-
-                TextView tv2 = (TextView)findViewById(R.id.nlu_entries_indicator);
-                tv2.setText("Amount of NLU entries: " + Long.toString(nCount));
-
-                TextView tv3 = (TextView)findViewById(R.id.ta_entries_indicator);
-                tv3.setText("Amount of TA entries: " + Long.toString(tCount));
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(POSITION, tabLayout.getSelectedTabPosition());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        viewPager.setCurrentItem(savedInstanceState.getInt(POSITION));
+    }
+
+    private void setupTabIcons() {
+        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
+        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
+        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
@@ -110,7 +113,7 @@ public class Home_GUI extends AppCompatActivity implements NavigationView.OnNavi
                     });
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.nlu_GUI);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

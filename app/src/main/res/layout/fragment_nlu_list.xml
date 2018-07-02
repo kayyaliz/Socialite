@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="Select Date Range"
+        android:textAlignment="center"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="24sp" />
+
+    <Spinner
+        android:id="@+id/NLU_List_DateRangeSpinner"
+        style="@android:style/Widget.Holo.Light.Spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:id="@+id/nlu_list_nlu_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="Watson NLU Response"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="20sp" />
+
+    <ExpandableListView
+        android:id="@+id/nlu_list_expandable_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="20dp"/>
+
+</LinearLayout>
