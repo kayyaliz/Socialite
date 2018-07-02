@@ -77,9 +77,9 @@ public class Test_TA_Fragment extends Fragment {
             Log.v("Test", TA_results.toString());
 
             Toast.makeText(getActivity(),
-                    "NLU Response Received!",
+                    "TA Response Received!",
                     Toast.LENGTH_SHORT).show();
-            Log.v("NLU_Results", TA_results.toString());
+            Log.v("TA_Results", TA_results.toString());
             listDataHeader_doc.clear();
             listDataChild_doc.clear();
             listDataHeader_sent.clear();
@@ -94,7 +94,7 @@ public class Test_TA_Fragment extends Fragment {
             } else {
                 listDataHeader_doc.add("No Insights");
                 List<String> InfoArr = new ArrayList<String>();
-                InfoArr.add("No natural language emotion insights could be found on the the text \"" + message + "\". Try entering more data!");
+                InfoArr.add("No tone analyzer insights could be found on the the text \"" + message + "\". Try entering more data!");
                 listDataChild_doc.put(listDataHeader_doc.get(0), InfoArr);
             }
             listAdapter_doc.notifyDataSetChanged();
@@ -111,13 +111,13 @@ public class Test_TA_Fragment extends Fragment {
                 } else {
                     listDataHeader_sent.add("No Insights");
                     List<String> InfoArr = new ArrayList<String>();
-                    InfoArr.add("No natural language emotion insights could be found on the the text \"" + message + "\". Try entering more data!");
+                    InfoArr.add("No tone analyzer insights could be found on the the text \"" + message + "\". Try entering more data!");
                     listDataChild_sent.put(listDataHeader_sent.get(0), InfoArr);
                 }
             } catch (Exception e) {
                 listDataHeader_sent.add("No Insights");
                 List<String> InfoArr = new ArrayList<String>();
-                InfoArr.add("No tone analyzer sentance level insights could be found, as only one sentence was entered.");
+                InfoArr.add("No tone analyzer sentence level insights could be found, as only one sentence was entered.");
                 listDataChild_sent.put(listDataHeader_sent.get(0), InfoArr);
             }
             listAdapter_sent.notifyDataSetChanged();

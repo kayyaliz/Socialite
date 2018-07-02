@@ -1,6 +1,8 @@
 package edu.wit.mobileapp.socialite.GUI;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -9,6 +11,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -136,29 +139,40 @@ public class Testing_Parent_GUI extends AppCompatActivity implements NavigationV
     public void sendData(String message) {
         String nlu_tag = "android:switcher:" + R.id.testing_parent_viewpager + ":" + 1;
         String ta_tag = "android:switcher:" + R.id.testing_parent_viewpager + ":" + 2;
-//        Test_NLU_Fragment nlu_frag = (Test_NLU_Fragment) getSupportFragmentManager().findFragmentByTag(nlu_tag);
-//        Test_TA_Fragment ta_frag = (Test_TA_Fragment) getSupportFragmentManager().findFragmentByTag(ta_tag);
-//        nlu_frag.displayReceivedData(message);
-//        ta_frag.displayReceivedData(message);
         Test_NLU_Fragment nlu_frag = (Test_NLU_Fragment) getSupportFragmentManager().findFragmentByTag(nlu_tag);
         Test_TA_Fragment ta_frag = (Test_TA_Fragment) getSupportFragmentManager().findFragmentByTag(ta_tag);
-        if(nlu_frag != null) {
-            nlu_frag.displayReceivedData(message);
+        nlu_frag.displayReceivedData(message);
+        ta_frag.displayReceivedData(message);
+        AlertDialog.Builder gotoalert;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            gotoalert = new AlertDialog.Builder(Testing_Parent_GUI.this, android.R.style.Theme_Material_Dialog_Alert);
         } else {
-            Log.v("Fragment", "not found");
+            gotoalert = new AlertDialog.Builder(Testing_Parent_GUI.this);
         }
-        if(ta_frag != null) {
-            ta_frag.displayReceivedData(message);
-        } else {
-            Test_TA_Fragment new_ta_frag = new Test_TA_Fragment();
-            Bundle args = new Bundle();
-            args.putString("Message", message);
-            new_ta_frag.setArguments(args);
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//            transaction.replace(R.id.testing_ta_fragment, new_ta_frag);
-            transaction.addToBackStack(null);
-            // Commit the transaction
-            transaction.commit();
-        }
+        gotoalert.setTitle("Insights Recieved!");
+        gotoalert.setMessage("View an insight by tapping below or toggle using the tabs above.");
+        gotoalert.setCancelable(true);
+        gotoalert.setNegativeButton(
+                "NLU",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        tabLayout.getTabAt(1).select();
+                        dialog.cancel();
+                    }
+                }
+        );
+        gotoalert.setPositiveButton(
+                "Tone Analyzer",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        tabLayout.getTabAt(2).select();
+                        dialog.cancel();
+                    }
+                }
+        );
+        AlertDialog alert = gotoalert.create();
+        alert.show();
     }
 }
