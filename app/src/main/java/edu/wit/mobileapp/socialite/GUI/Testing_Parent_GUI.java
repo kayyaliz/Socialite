@@ -20,6 +20,8 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import java.util.Set;
+
 import edu.wit.mobileapp.socialite.GUI.Testing_Fragments.Test_DataEntryFragment;
 import edu.wit.mobileapp.socialite.GUI.Testing_Fragments.Test_NLU_Fragment;
 import edu.wit.mobileapp.socialite.GUI.Testing_Fragments.Test_TA_Fragment;
@@ -100,7 +102,8 @@ public class Testing_Parent_GUI extends AppCompatActivity implements NavigationV
             Intent myIntent = new Intent(this, Testing_Parent_GUI.class);
             startActivity(myIntent);
         } else if (id == R.id.nav_settings) {
-
+            Intent myIntent = new Intent(this, SettingsActivity.class);
+            startActivity(myIntent);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.sign_out) {
