@@ -58,6 +58,9 @@
         <activity
             android:name="edu.wit.mobileapp.socialite.GUI.Testing_Parent_GUI"
             android:label="@string/title_activity_testing__gui"
+            android:theme="@style/AppCompat.Light" />
+        <activity android:name="edu.wit.mobileapp.socialite.GUI.SettingsActivity"
+            android:label="@string/title_activity_settings__gui"
             android:theme="@style/AppCompat.Light"></activity>
     </application>
 
