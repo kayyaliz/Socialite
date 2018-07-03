@@ -6,7 +6,6 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -15,23 +14,16 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.AnalysisResults;
-
-import junit.framework.Test;
-
-import java.util.concurrent.ExecutionException;
 
 import edu.wit.mobileapp.socialite.GUI.Testing_Fragments.Test_DataEntryFragment;
 import edu.wit.mobileapp.socialite.GUI.Testing_Fragments.Test_NLU_Fragment;
 import edu.wit.mobileapp.socialite.GUI.Testing_Fragments.Test_TA_Fragment;
 import edu.wit.mobileapp.socialite.GUI.Testing_Fragments.TestingFragmentAdapter;
-import edu.wit.mobileapp.socialite.IBM.NLU;
 import edu.wit.mobileapp.socialite.Keyboard.R;
 
 public class Testing_Parent_GUI extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, Test_DataEntryFragment.SendMessage{
@@ -102,7 +94,7 @@ public class Testing_Parent_GUI extends AppCompatActivity implements NavigationV
             Intent myIntent = new Intent(this, NLU_Parent_GUI.class);
             startActivity(myIntent);
         } else if (id == R.id.nav_ta) {
-            Intent myIntent = new Intent(this, TA_GUI.class);
+            Intent myIntent = new Intent(this, TA_Parent_GUI.class);
             startActivity(myIntent);
         } else if (id == R.id.nav_testing) {
             Intent myIntent = new Intent(this, Testing_Parent_GUI.class);

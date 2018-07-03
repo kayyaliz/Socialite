@@ -18,8 +18,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import edu.wit.mobileapp.socialite.GUI.NLU_Fragments.NLUFragmentAdapter;
-import edu.wit.mobileapp.socialite.GUI.NLU_Fragments.NLU_Graph_Fragment;
-import edu.wit.mobileapp.socialite.GUI.Testing_Fragments.TestingFragmentAdapter;
 import edu.wit.mobileapp.socialite.Keyboard.R;
 
 public class NLU_Parent_GUI extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -93,7 +91,7 @@ public class NLU_Parent_GUI extends AppCompatActivity implements NavigationView.
             Intent myIntent = new Intent(this, NLU_Parent_GUI.class);
             startActivity(myIntent);
         } else if (id == R.id.nav_ta) {
-            Intent myIntent = new Intent(this, TA_GUI.class);
+            Intent myIntent = new Intent(this, TA_Parent_GUI.class);
             startActivity(myIntent);
         } else if (id == R.id.nav_testing) {
             Intent myIntent = new Intent(this, Testing_Parent_GUI.class);

@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/nlu_GUI"
-    tools:context="edu.wit.mobileapp.socialite.GUI.Testing_Parent_GUI">
+    android:id="@+id/ta_GUI"
+    tools:context="edu.wit.mobileapp.socialite.GUI.TA_Parent_GUI">
 
 
     <LinearLayout
@@ -15,7 +15,7 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/ta_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -23,7 +23,7 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         <android.support.design.widget.TabLayout
-            android:id="@+id/nlu_parent_tablayout"
+            android:id="@+id/ta_parent_tablayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
@@ -31,7 +31,7 @@
             app:tabMode="fixed" />
 
         <android.support.v4.view.ViewPager
-            android:id="@+id/nlu_parent_viewpager"
+            android:id="@+id/ta_parent_viewpager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -40,7 +40,7 @@
     </LinearLayout>
 
     <android.support.design.widget.NavigationView
-        android:id="@+id/nlu_nav_view"
+        android:id="@+id/ta_nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"

@@ -52,7 +52,7 @@
             android:label="@string/title_activity_nlu__gui"
             android:theme="@style/AppCompat.Light" />
         <activity
-            android:name="edu.wit.mobileapp.socialite.GUI.TA_GUI"
+            android:name="edu.wit.mobileapp.socialite.GUI.TA_Parent_GUI"
             android:label="@string/title_activity_ta__gui"
             android:theme="@style/AppCompat.Light" />
         <activity

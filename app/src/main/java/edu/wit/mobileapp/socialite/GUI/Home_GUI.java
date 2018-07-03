@@ -2,7 +2,6 @@ package edu.wit.mobileapp.socialite.GUI;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,12 +19,6 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import edu.wit.mobileapp.socialite.Keyboard.R;
 
@@ -77,7 +70,7 @@ public class Home_GUI extends AppCompatActivity implements NavigationView.OnNavi
             Intent myIntent = new Intent(this, NLU_Parent_GUI.class);
             startActivity(myIntent);
         } else if (id == R.id.nav_ta) {
-            Intent myIntent = new Intent(this, TA_GUI.class);
+            Intent myIntent = new Intent(this, TA_Parent_GUI.class);
             startActivity(myIntent);
         } else if (id == R.id.nav_testing) {
             Intent myIntent = new Intent(this, Testing_Parent_GUI.class);
