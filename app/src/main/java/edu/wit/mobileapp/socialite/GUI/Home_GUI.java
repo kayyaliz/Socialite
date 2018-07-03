@@ -10,7 +10,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
@@ -41,40 +44,24 @@ public class Home_GUI extends AppCompatActivity implements NavigationView.OnNavi
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        String uEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+
         //Defines Logged In User Text View
+        String sourceString = "Logged in: " + "<b>" + uEmail + "</b>";
         TextView tv = (TextView)findViewById(R.id.login_indicator);
-        tv.setText("Logged in: " + (FirebaseAuth.getInstance().getCurrentUser().getEmail()));
+        tv.setText(Html.fromHtml(sourceString));
 
-        loadView();
+        //Defines Button for testing Suite
+        Button yourButton = (Button) findViewById(R.id.ta_link);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-    }
-
-    private void loadView() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid());
-
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                long nCount = dataSnapshot.child("NLU_Data").getChildrenCount();
-                long tCount = dataSnapshot.child("TA_Data").getChildrenCount();
-
-                TextView tv2 = (TextView)findViewById(R.id.nlu_entries_indicator);
-                tv2.setText("Amount of NLU entries: " + Long.toString(nCount));
-
-                TextView tv3 = (TextView)findViewById(R.id.ta_entries_indicator);
-                tv3.setText("Amount of TA entries: " + Long.toString(tCount));
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+        yourButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(Home_GUI.this, Testing_Parent_GUI.class));
             }
         });
 
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

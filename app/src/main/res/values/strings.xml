@@ -60,7 +60,7 @@
     <string name="nav_header_subtitle">Modernizing Communication</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_navigation_drawer">Socialite Home</string>
+    <string name="title_activity_navigation_drawer"></string>
 
 
     <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
@@ -76,4 +76,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Social Media URLs -->
+    <string name="twitter_url">Shooting Blanks</string>
+    <string name="facebook_urls">Shooting Blanks</string>
+    <string name="email_mailto">blank</string>
+
+
 </resources>

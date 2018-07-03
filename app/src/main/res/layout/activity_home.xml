@@ -19,33 +19,79 @@
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/nav_header_desc"
-            android:paddingTop="@dimen/nav_header_vertical_spacing"
-            android:paddingBottom="20dp"
-            app:srcCompat="@drawable/socialite_icon"
-            android:scaleType="fitXY"
-            android:orientation="vertical"
             android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/nav_header_desc"
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+            android:paddingTop="@dimen/nav_header_vertical_spacing"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/welcome_blurb"
 
             />
 
         <TextView
             android:id="@+id/login_indicator"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp" />
 
         <TextView
-            android:id="@+id/nlu_entries_indicator"
+            android:id="@+id/home_information"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:editable="false"
+            android:ems="10"
+            android:inputType="textCapSentences|textMultiLine"
+            android:padding="10dp"
+            android:text="        Socialite is an application designed to provide insights on your text communication. We are fully aware that in today's world the majority of communication is completed over a text medium and therefore, having a tool which can provide analysis on your own written communication is priceless. If you are new to Socialite, we’d recommend you explore the testing suite in order to get your bearings."
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/ta_link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Testing Suite" />
 
         <TextView
-            android:id="@+id/ta_entries_indicator"
+            android:id="@+id/any_question"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Any questions?"
+            android:textAlignment="center"
+            android:textSize="31dp"
+            android:paddingTop="50dp"
+            ></TextView>
 
+        <!--Nested Horizontal Social Media Links-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:paddingTop="50dp"
+            >
+
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/com_facebook_button_icon_blue" />
+        </LinearLayout>
 
     </LinearLayout>
+
+
 
     <include
         layout="@layout/app_bar_navigation_drawer"
