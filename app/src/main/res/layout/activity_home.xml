@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingLeft="10dp"
         android:paddingTop="75dp">
 
         <ImageView
@@ -34,7 +33,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
-            android:paddingTop="10dp" />
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"/>
 
         <TextView
             android:id="@+id/home_information"
@@ -43,7 +43,8 @@
             android:editable="false"
             android:ems="10"
             android:inputType="textCapSentences|textMultiLine"
-            android:padding="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:text="        Socialite is an application designed to provide insights on your text communication. We are fully aware that in today's world the majority of communication is completed over a text medium and therefore, having a tool which can provide analysis on your own written communication is priceless. If you are new to Socialite, we’d recommend you explore the testing suite in order to get your bearings."
             android:textSize="18sp" />
 
@@ -51,7 +52,15 @@
             android:id="@+id/ta_link"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Testing Suite" />
+            android:layout_marginTop="10dp"
+            android:autoText="false"
+            android:capitalize="words"
+            android:text="Testing Suite"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFFFFF"
+            android:theme="@style/Widget.AppCompat.Button.Colored"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
 
         <TextView
             android:id="@+id/any_question"
@@ -60,8 +69,8 @@
             android:text="Any questions?"
             android:textAlignment="center"
             android:textSize="31dp"
-            android:paddingTop="50dp"
-            ></TextView>
+            android:paddingTop="20dp">
+        </TextView>
 
         <!--Nested Horizontal Social Media Links-->
 
@@ -69,27 +78,45 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="horizontal"
-            android:paddingTop="50dp">
+            android:orientation="vertical">
 
 
-            <ImageButton
-                android:id="@+id/imageButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <Space
+                android:layout_width="50dp"
+                android:layout_height="225dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+                android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/com_facebook_button_icon_blue" />
+                <ImageButton
+                    android:id="@+id/imageButton3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/if_mail_email_envelope_send_message_1011335" />
+
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/if_twitter_circle_294709" />
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/if_facebook_circle_294710" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
-
 
 
     <include
