@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/textView4"
-                android:text="Retrieve NLU Insights"
+                android:text="Store NLU Insights"
                 android:textSize="18sp" />
 
             <Space
@@ -58,7 +58,7 @@
                 android:id="@+id/toggle_TA_Data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Retrieve Tone Analyzer Insights"
+                android:text="Store Tone Analyzer Insights"
                 android:textSize="18sp" />
 
             <Space
@@ -80,7 +80,7 @@
                     android:textColor="#000000"/>
 
                 <Button
-                    android:id="@+id/button4"
+                    android:id="@+id/Twitter_Acc_Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -96,7 +96,7 @@
                 android:layout_height="15dp" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/Delete_NLU_Data_Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Delete NLU Data"
@@ -109,7 +109,7 @@
                 android:layout_height="15dp" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/Delete_TA_Data_Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Delete TA Data"

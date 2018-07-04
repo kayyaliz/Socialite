@@ -97,7 +97,8 @@ public class TA_Parent_GUI extends AppCompatActivity implements NavigationView.O
             Intent myIntent = new Intent(this, Testing_Parent_GUI.class);
             startActivity(myIntent);
         } else if (id == R.id.nav_settings) {
-
+            Intent myIntent = new Intent(this, SettingsActivity.class);
+            startActivity(myIntent);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.sign_out) {

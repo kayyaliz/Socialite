@@ -59,9 +59,14 @@ public class Test_NLU_Fragment extends Fragment {
             Toast.makeText(getActivity(),
                         "NLU Response Received!",
                         Toast.LENGTH_SHORT).show();
-            Log.v("NLU_Results", NLU_results.toString());
             listDataHeader.clear();
             listDataChild.clear();
+            if(NLU_results == null) {
+                Log.v("Empty", "is null");
+                return;
+            }
+            Log.v("NLU_Results", NLU_results.toString());
+
             if (NLU_results.getKeywords().size() > 0 || NLU_results.getEntities().size() > 0) {
                 for(int i = 0; i < NLU_results.getKeywords().size(); i++) {
                     listDataHeader.add("Keyword: " + NLU_results.getKeywords().get(i).getText());

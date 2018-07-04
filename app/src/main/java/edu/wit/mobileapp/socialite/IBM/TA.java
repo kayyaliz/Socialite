@@ -1,14 +1,19 @@
 package edu.wit.mobileapp.socialite.IBM;
 
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ServerValue;
+import com.google.firebase.database.ValueEventListener;
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.AnalysisResults;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.ToneAnalyzer;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneAnalysis;
@@ -60,10 +65,26 @@ public class TA extends AsyncTask<String, String, ToneAnalysis> {
         return documentTone;
     }
 
-    private void storeInDb(String uid, ToneAnalysis utterancesTone) {
-        Map<String, String> timestamp = ServerValue.TIMESTAMP;
-        DatabaseReference PostRef = db_ref.child(uid).child("TA_Data").push();
-        PostRef.child("data").setValue(utterancesTone);
-        PostRef.child("Timestamp").setValue(timestamp);
+    private void storeInDb(final String uid, final ToneAnalysis utterancesTone) {
+        final Query validityQuery = db_ref.child(user.getUid()).child("Settings");
+
+        validityQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                boolean valid;
+                valid = (Boolean) dataSnapshot.child("Retrieve_TA").getValue();
+                if(valid) {
+                    Map<String, String> timestamp = ServerValue.TIMESTAMP;
+                    DatabaseReference PostRef = db_ref.child(uid).child("TA_Data").push();
+                    PostRef.child("data").setValue(utterancesTone);
+                    PostRef.child("Timestamp").setValue(timestamp);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
     }
 }
