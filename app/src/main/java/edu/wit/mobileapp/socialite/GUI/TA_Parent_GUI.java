@@ -73,9 +73,6 @@ public class TA_Parent_GUI extends AppCompatActivity implements NavigationView.O
 
         //Create BarChart
         BarChart barChart = (BarChart) findViewById(R.id.TA_Language_Chart);
-
-        //loadView(barChart);
-
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

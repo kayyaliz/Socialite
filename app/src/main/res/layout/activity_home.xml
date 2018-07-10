@@ -10,112 +10,54 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingTop="75dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="@dimen/welcome_icon_spacing"
+            android:scaleType="fitXY"
             android:layout_gravity="center_horizontal"
             android:contentDescription="@string/nav_header_desc"
             android:orientation="vertical"
-            android:paddingBottom="20dp"
-            android:paddingTop="@dimen/nav_header_vertical_spacing"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/welcome_blurb"
-
-            />
+            app:srcCompat="@drawable/welcome_blurb" />
 
         <TextView
             android:id="@+id/login_indicator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:paddingLeft="10dp"/>
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:text="Logged In:" />
 
         <TextView
-            android:id="@+id/home_information"
-            android:layout_width="match_parent"
+            android:id="@+id/information_blurb"
+            android:layout_width="325dp"
             android:layout_height="wrap_content"
-            android:editable="false"
-            android:ems="10"
-            android:inputType="textCapSentences|textMultiLine"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="        Socialite is an application designed to provide insights on your text communication. We are fully aware that in today's world the majority of communication is completed over a text medium and therefore, having a tool which can provide analysis on your own written communication is priceless. If you are new to Socialite, we’d recommend you explore the testing suite in order to get your bearings."
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/ta_link"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:autoText="false"
-            android:capitalize="words"
-            android:text="Testing Suite"
-            android:background="@color/colorPrimary"
-            android:textColor="#FFFFFF"
-            android:theme="@style/Widget.AppCompat.Button.Colored"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"/>
-
-        <TextView
-            android:id="@+id/any_question"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Any questions?"
-            android:textAlignment="center"
-            android:textSize="31dp"
-            android:paddingTop="20dp">
-        </TextView>
-
-        <!--Nested Horizontal Social Media Links-->
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="30dp"
+            android:text="Socialite is an application designed to provide insights on your text communication. We are fully aware that in today's world the majority of communication is completed over a text medium and therefore, having a tool which can provide analysis on your own written communication is priceless. \n\nIf you are new to Socialite, we’d recommend you explore the testing suite in order to get your bearings."
+            android:textSize="18sp"></TextView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-
-            <Space
-                android:layout_width="50dp"
-                android:layout_height="225dp"
-                android:layout_weight="1" />
-
-            <LinearLayout
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical"
+            android:paddingTop="40dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+            <Button
+                android:id="@+id/Testing_Suite_Button"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <ImageButton
-                    android:id="@+id/imageButton3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/if_mail_email_envelope_send_message_1011335" />
-
-                <ImageButton
-                    android:id="@+id/imageButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/if_twitter_circle_294709" />
-
-                <ImageButton
-                    android:id="@+id/imageButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/if_facebook_circle_294710" />
-            </LinearLayout>
-
+                android:layout_height="wrap_content"
+                android:text="Testing Suite"
+                android:background="@color/colorPrimary"
+                android:textColor="#FFFFFF"
+                android:theme="@style/Widget.AppCompat.Button.Colored"/>
         </LinearLayout>
-
     </LinearLayout>
 
 

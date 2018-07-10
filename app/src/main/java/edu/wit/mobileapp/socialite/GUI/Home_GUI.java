@@ -1,6 +1,7 @@
 package edu.wit.mobileapp.socialite.GUI;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -21,6 +22,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 import edu.wit.mobileapp.socialite.Keyboard.R;
+
+import static android.text.Layout.JUSTIFICATION_MODE_INTER_WORD;
 
 public class Home_GUI extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -44,8 +47,13 @@ public class Home_GUI extends AppCompatActivity implements NavigationView.OnNavi
         TextView tv = (TextView)findViewById(R.id.login_indicator);
         tv.setText(Html.fromHtml(sourceString));
 
+        TextView info_blurb = (TextView)findViewById(R.id.information_blurb);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            info_blurb.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+        }
+
         //Defines Button for testing Suite
-        Button yourButton = (Button) findViewById(R.id.ta_link);
+        Button yourButton = (Button) findViewById(R.id.Testing_Suite_Button);
 
         yourButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
