@@ -11,7 +11,7 @@ import edu.wit.mobileapp.socialite.GUI.Testing_Fragments.Test_TA_Fragment;
 
 public class TAFragmentAdapter extends FragmentPagerAdapter {
     final int PAGE_COUNT = 3;
-    private String tabTitles[] = new String[] { "Doe", "Ray", "Me" };
+    private String tabTitles[] = new String[] { "Graph", "List", "Info" };
     private Context context;
 
     public TAFragmentAdapter(FragmentManager fm, Context context) {

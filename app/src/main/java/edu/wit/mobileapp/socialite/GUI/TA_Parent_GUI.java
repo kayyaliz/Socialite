@@ -112,7 +112,7 @@ public class TA_Parent_GUI extends AppCompatActivity implements NavigationView.O
                     });
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.ta_gui_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.ta_GUI);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
