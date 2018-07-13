@@ -192,8 +192,10 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
 
 
 
+    @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
@@ -212,7 +214,11 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
             Intent myIntent = new Intent(this, SettingsActivity.class);
             startActivity(myIntent);
         } else if (id == R.id.nav_share) {
-
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+            sendIntent.setType("text/plain");
+            startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
         } else if (id == R.id.sign_out) {
             AuthUI.getInstance()
                     .signOut(this)

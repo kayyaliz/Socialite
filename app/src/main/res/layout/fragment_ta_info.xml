@@ -34,7 +34,7 @@
                 android:inputType="textCapSentences|textMultiLine"
                 android:padding="10dp"
                 android:text="        Tone Analyzer is another API provided by IBM Watson which is able to make insights on text's emotional tone aswell as language propensities. We felt as though Natural Language had emotion covered therefore we only report on the language propensities discovered by 	&quot; TA &quot; Tone Analyzer segments its response into both document and sentence tones however, for the graph we only display the tone retrieved by the entire document."
-                android:textSize="18sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/ta_info2"
@@ -45,7 +45,7 @@
                 android:inputType="textCapSentences|textMultiLine"
                 android:padding="10dp"
                 android:text="        Socialite uses natural language understanding to help its users leverage contextual insights from how they communicate. Users are able to view their emotion insights on dynamic timelines and parse through their data. You can control what data is collected and how, in the settings activity."
-                android:textSize="18sp" />
+                android:textSize="14sp" />
         </LinearLayout>
     </ScrollView>
 

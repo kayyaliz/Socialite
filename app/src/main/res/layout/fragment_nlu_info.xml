@@ -34,7 +34,7 @@
                 android:inputType="textCapSentences|textMultiLine"
                 android:padding="10dp"
                 android:text="        Natural Language Understanding is a collection of APIs that offer text analysis through natural language processing. This set of APIs can analyze text to help you understand its concepts, entities, keywords, sentiment, and more. Users are able to uncover insights from both structured and unstructured data and understand both sentiment and emotion. Insights retrieved include concepts, entities, keywords, categories, relations, and semantic roles."
-                android:textSize="18sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/editText4"
@@ -45,7 +45,7 @@
                 android:inputType="textCapSentences|textMultiLine"
                 android:padding="10dp"
                 android:text="        Socialite uses natural language understanding to help its users leverage contextual insights from how they communicate. Users are able to view their emotion insights on dynamic timelines and parse through their data. You can control what data is collected and how, in the settings activity."
-                android:textSize="18sp" />
+                android:textSize="14sp" />
         </LinearLayout>
     </ScrollView>
 

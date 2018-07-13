@@ -84,5 +84,7 @@
     <string name="email_mailto">blank</string>
     <string name="title_activity_settings">Settings</string>
 
+    <string name="send_to">Share via</string>
+
 
 </resources>
