@@ -30,7 +30,6 @@ import edu.wit.mobileapp.socialite.Keyboard.R;
 public class NLU_List_Fragment  extends Fragment {
 
     Spinner dateRangeSpinner;
-
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
     List<String> listDataHeader;

@@ -24,7 +24,6 @@ import edu.wit.mobileapp.socialite.Keyboard.R;
 
 public class Test_TA_Fragment extends Fragment {
 
-
     ExpandableListAdapter listAdapter_doc;
     ExpandableListView expListView_doc;
     List<String> listDataHeader_doc;

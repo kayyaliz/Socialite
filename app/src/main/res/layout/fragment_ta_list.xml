@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="30dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:id="@+id/testing_ta_fragment">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/ta_list_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="Watson Tone Analyzer Response"
+        android:textAlignment="center"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="24sp" />
+
+    <Spinner
+        android:id="@+id/TA_List_DateRangeSpinner"
+        style="@android:style/Widget.Holo.Light.Spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:id="@+id/ta_list_header_doc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="Overall Document Tone"
+        android:textAlignment="center"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="18sp" />
+
+    <ExpandableListView
+        android:id="@+id/ta_list_elv_doc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/ta_list_header_sent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="Detailed Sentence Tone"
+        android:textAlignment="center"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="18sp" />
+
+    <ExpandableListView
+        android:id="@+id/ta_list_elv_sent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
