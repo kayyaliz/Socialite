@@ -1,6 +1,7 @@
 package edu.wit.mobileapp.socialite.GUI.TA_Fragments;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -30,10 +31,15 @@ import edu.wit.mobileapp.socialite.Keyboard.R;
 public class TA_List_Fragment extends Fragment {
 
     Spinner dateRangeSpinner;
-    ExpandableListAdapter listAdapter;
-    ExpandableListView expListView;
-    List<String> listDataHeader;
-    HashMap<String, List<String>> listDataChild;
+    ExpandableListAdapter listAdapter_doc;
+    ExpandableListView expListView_doc;
+    List<String> listDataHeader_doc;
+    HashMap<String, List<String>> listDataChild_doc;
+
+    ExpandableListAdapter listAdapter_sent;
+    ExpandableListView expListView_sent;
+    List<String> listDataHeader_sent;
+    HashMap<String, List<String>> listDataChild_sent;
 
     @Nullable
     @Override
@@ -46,105 +52,125 @@ public class TA_List_Fragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dateRangeSpinner.setAdapter(adapter);
 
-        expListView = (ExpandableListView) rootView.findViewById(R.id.ta_list_elv_doc);
-        listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<String>>();
+        expListView_doc = (ExpandableListView) rootView.findViewById(R.id.ta_list_elv_doc);
+        listDataHeader_doc = new ArrayList<String>();
+        listDataChild_doc = new HashMap<String, List<String>>();
+
+        expListView_sent = (ExpandableListView) rootView.findViewById(R.id.ta_list_elv_sent);
+        listDataHeader_sent = new ArrayList<String>();
+        listDataChild_sent = new HashMap<String, List<String>>();
+
         return rootView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
         super.onViewCreated(view, savedInstanceState);
+        listDataHeader_doc.add("No Insights");
+        List<String> ToneArr_Doc = new ArrayList<String>();
+        ToneArr_Doc.add("No data has been entered yet. Click the \"Enter Data\" tab and enter text to begin!");
+        listDataChild_doc.put(listDataHeader_doc.get(0), ToneArr_Doc);
+        listAdapter_doc = new ExpandableListAdapter(this.getActivity(), listDataHeader_doc, listDataChild_doc);
+        expListView_doc.setAdapter(listAdapter_doc);
 
-        listDataHeader.add("No Insights");
-        List<String> EmotionArr = new ArrayList<String>();
-        EmotionArr.add("No data has been entered yet. Click the \"Enter Data\" tab and enter text to begin!");
-        listDataChild.put(listDataHeader.get(0), EmotionArr);
-        listAdapter = new ExpandableListAdapter(this.getActivity(), listDataHeader, listDataChild);
-        expListView.setAdapter(listAdapter);
+        listDataHeader_sent.add("No Insights");
+        List<String> ToneArr_sent = new ArrayList<String>();
+        ToneArr_sent.add("No data has been entered yet. Click the \"Enter Data\" tab and enter text to begin!");
+        listDataChild_sent.put(listDataHeader_sent.get(0), ToneArr_sent);
+        listAdapter_sent = new ExpandableListAdapter(this.getActivity(), listDataHeader_sent, listDataChild_sent);
+        expListView_sent.setAdapter(listAdapter_sent);
+        final Long unixTime = System.currentTimeMillis();
 
-//        final Long unixTime = System.currentTimeMillis();
-//        final Long One_Day_Millis = (24 * 60 * 60 * 1000) * 1L;
-//        loadList((unixTime - (1 * One_Day_Millis)));
-//
-//        dateRangeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-//                String dateItemText = dateRangeSpinner.getSelectedItem().toString();
-//                Log.v("DateRange", dateItemText);
-//                Long startTime = null;
-//                switch (dateItemText) {
-//                    case "All Time":
-//                        startTime = 0L;
-//                        break;
-//                    case "Last 24 Hours":
-//                        startTime = unixTime - (1 * One_Day_Millis);
-//                        break;
-//                    case "Last 7 Days":
-//                        startTime = unixTime - (7 * One_Day_Millis);
-//                        break;
-//                    case "Last 30 Days":
-//                        startTime = unixTime - (30 * One_Day_Millis);
-//                        break;
-//                    case "Last Year":
-//                        startTime = unixTime - (365 * One_Day_Millis);
-//                        break;
-//                    default:
-//                        startTime = 0L;
-//                }
-//                loadList(startTime);
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parentView) {
-//                // your code here
-//            }
-//        });
+        final Long One_Day_Millis = (24 * 60 * 60 * 1000) * 1L;
+        loadList((unixTime - (1 * One_Day_Millis)));
+
+        dateRangeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                String dateItemText = dateRangeSpinner.getSelectedItem().toString();
+                Log.v("DateRange", dateItemText);
+                Long startTime = null;
+                switch (dateItemText) {
+                    case "All Time":
+                        startTime = 0L;
+                        break;
+                    case "Last 24 Hours":
+                        startTime = unixTime - (1 * One_Day_Millis);
+                        break;
+                    case "Last 7 Days":
+                        startTime = unixTime - (7 * One_Day_Millis);
+                        break;
+                    case "Last 30 Days":
+                        startTime = unixTime - (30 * One_Day_Millis);
+                        break;
+                    case "Last Year":
+                        startTime = unixTime - (365 * One_Day_Millis);
+                        break;
+                    default:
+                        startTime = 0L;
+                }
+                loadList(startTime);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+        });
     }
 
     private void loadList(long startTime) {
+//
+//        // Instantiate Discard Array
+//        final List<String> discard = new ArrayList<>();
+//        discard.add("anger");
+//        discard.add("disgust");
+//        discard.add("fear");
+//        discard.add("joy");
+//        discard.add("sadness");
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("NLU_Data");
-        listDataHeader.clear();
-        listDataChild.clear();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("TA_Data");
         // Attach a listener to read the data at our posts reference
         reference.orderByChild("Timestamp").startAt(startTime).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //Emotions NLU Tracks
-                for(DataSnapshot instance: dataSnapshot.getChildren()) {
-                    DataSnapshot entities_snapshot = instance.child("data").child("entities");
-                    for (DataSnapshot entities: entities_snapshot.getChildren()) {
-                        if (entities.hasChild("emotion")) {
-                            listDataHeader.add("Entity: " + entities.child("text").getValue().toString());
-                            List<String> KeywordArr = new ArrayList<String>();
-                            KeywordArr.add("Anger: " + entities.child("emotion").child("anger").getValue(Float.class).toString());
-                            KeywordArr.add("Disgust: " + entities.child("emotion").child("disgust").getValue(Float.class).toString());
-                            KeywordArr.add("Fear: " + entities.child("emotion").child("fear").getValue(Float.class).toString());
-                            KeywordArr.add("Joy: " + entities.child("emotion").child("joy").getValue(Float.class).toString());
-                            KeywordArr.add("Sadness: " + entities.child("emotion").child("sadness").getValue(Float.class).toString());
-                            KeywordArr.add("Relevance: " + entities.child("relevance").getValue().toString());
-                            KeywordArr.add("Sentiment: " + entities.child("sentiment").child("score").getValue(Float.class).toString());
-                            listDataChild.put(listDataHeader.get(listDataHeader.size()-1), KeywordArr);
-                        }
-                    }
-                    DataSnapshot keywords_snapshot = instance.child("data").child("keywords");
-                    for (DataSnapshot keywords: keywords_snapshot.getChildren()) {
-                        if (keywords.hasChild("emotion")) {
-                            listDataHeader.add("Keyword: " + keywords.child("text").getValue().toString());
-                            List<String> KeywordArr = new ArrayList<String>();
-                            KeywordArr.add("Anger: " + keywords.child("emotion").child("anger").getValue(Float.class).toString());
-                            KeywordArr.add("Disgust: " + keywords.child("emotion").child("disgust").getValue(Float.class).toString());
-                            KeywordArr.add("Fear: " + keywords.child("emotion").child("fear").getValue(Float.class).toString());
-                            KeywordArr.add("Joy: " + keywords.child("emotion").child("joy").getValue(Float.class).toString());
-                            KeywordArr.add("Sadness: " + keywords.child("emotion").child("sadness").getValue(Float.class).toString());
-                            KeywordArr.add("Relevance: " + keywords.child("relevance").getValue().toString());
-                            KeywordArr.add("Sentiment: " + keywords.child("sentiment").child("score").getValue(Float.class).toString());
-                            listDataChild.put(listDataHeader.get(listDataHeader.size()-1), KeywordArr);
-                        }
-                    }
-                }
-                listAdapter.notifyDataSetChanged();
+//                //
+//                //Lang Variables
+//                float analytical=0f;
+//                float confident=0f;
+//                float tentative=0f;
+//                for(DataSnapshot instance: dataSnapshot.getChildren()) {
+//                    DataSnapshot entities_snapshot = instance.child("data").child("documentTone").child("tones");
+//                    for (DataSnapshot entities: entities_snapshot.getChildren()) {
+//
+//                        String t_id = entities.child("toneId").getValue(String.class);
+//                        float t_score = entities.child("score").getValue(Float.class);
+//
+//                        if (!(discard.contains(t_id))) {
+//                            switch (t_id){
+//                                case "analytical":
+//                                    analytical += t_score;
+//                                    break;
+//                                case "confident":
+//                                    confident += t_score;
+//                                    break;
+//                                case "tentative":
+//                                    tentative += t_score;
+//                                    break;
+//                                default:
+//                            }
+//                        }
+//                    }
+//                    DataSnapshot keywords_snapshot = instance.child("data").child("sentencesTone");
+//                    for (DataSnapshot keywords: keywords_snapshot.getChildren()) {
+//                        if (keywords.hasChild("emotion")) {
+//
+//                        }
+//                    }
+//                }
+//                listAdapter_doc.notifyDataSetChanged();
             }
 
             @Override
@@ -153,4 +179,5 @@ public class TA_List_Fragment extends Fragment {
             }
         });
     }
+
 }

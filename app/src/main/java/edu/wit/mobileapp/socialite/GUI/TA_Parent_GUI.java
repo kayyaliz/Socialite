@@ -45,6 +45,13 @@ public class TA_Parent_GUI extends AppCompatActivity implements NavigationView.O
     TabLayout tabLayout;
     ViewPager viewPager;
 
+
+    private int[] tabIcons = {
+            R.drawable.ic_pie_chart_outlined_white_24dp,
+            R.drawable.ic_format_list_numbered_white_24dp,
+            R.drawable.ic_info_outline_white_24dp
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +80,15 @@ public class TA_Parent_GUI extends AppCompatActivity implements NavigationView.O
 
         //Create BarChart
         BarChart barChart = (BarChart) findViewById(R.id.TA_Language_Chart);
+
+        setupTabIcons();
+    }
+
+
+    private void setupTabIcons() {
+        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
+        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
+        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
