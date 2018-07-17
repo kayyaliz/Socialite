@@ -121,14 +121,18 @@ public class TA_List_Fragment extends Fragment {
     }
 
     private void loadList(long startTime) {
-//
-//        // Instantiate Discard Array
-//        final List<String> discard = new ArrayList<>();
-//        discard.add("anger");
-//        discard.add("disgust");
-//        discard.add("fear");
-//        discard.add("joy");
-//        discard.add("sadness");
+
+        // Instantiate Discard Array
+        final List<String> discard = new ArrayList<>();
+        discard.add("anger");
+        discard.add("disgust");
+        discard.add("fear");
+        discard.add("joy");
+        discard.add("sadness");
+
+
+        listDataHeader_doc.clear();
+        listDataChild_doc.clear();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("TA_Data");
@@ -136,41 +140,59 @@ public class TA_List_Fragment extends Fragment {
         reference.orderByChild("Timestamp").startAt(startTime).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-//                //
-//                //Lang Variables
-//                float analytical=0f;
-//                float confident=0f;
-//                float tentative=0f;
-//                for(DataSnapshot instance: dataSnapshot.getChildren()) {
-//                    DataSnapshot entities_snapshot = instance.child("data").child("documentTone").child("tones");
-//                    for (DataSnapshot entities: entities_snapshot.getChildren()) {
-//
-//                        String t_id = entities.child("toneId").getValue(String.class);
-//                        float t_score = entities.child("score").getValue(Float.class);
-//
-//                        if (!(discard.contains(t_id))) {
-//                            switch (t_id){
-//                                case "analytical":
-//                                    analytical += t_score;
-//                                    break;
-//                                case "confident":
-//                                    confident += t_score;
-//                                    break;
-//                                case "tentative":
-//                                    tentative += t_score;
-//                                    break;
-//                                default:
-//                            }
-//                        }
-//                    }
-//                    DataSnapshot keywords_snapshot = instance.child("data").child("sentencesTone");
-//                    for (DataSnapshot keywords: keywords_snapshot.getChildren()) {
-//                        if (keywords.hasChild("emotion")) {
-//
-//                        }
-//                    }
-//                }
-//                listAdapter_doc.notifyDataSetChanged();
+
+//Lang Variables
+
+                float analytical=0f;
+                float confident=0f;
+                float tentative=0f;
+
+                boolean firstHeader = true;
+                for (DataSnapshot instance : dataSnapshot.getChildren()) {
+                    DataSnapshot entities_snapshot = instance.child("data").child("documentTone").child("tones");
+                    for (DataSnapshot entities : entities_snapshot.getChildren()) {
+
+                        //Get Document
+                        String t_id = entities.child("toneId").getValue(String.class);
+                        String t_name = entities.child("toneName").getValue(String.class);
+                        float t_score = entities.child("score").getValue(Float.class);
+                        List<String> ScoreArr = new ArrayList<String>();
+
+                        Log.v("Socialite", t_id + " " + t_score);
+                        Log.v("Socialite", entities.getValue().toString());
+
+                        if (!(discard.contains(t_id))) {
+                            switch (t_id){
+                                case "analytical":
+                                    listDataHeader_doc.add("Tone: " + t_name);
+                                    //analytical += t_score;
+                                    ScoreArr.add("Score: " +  t_score);
+                                    break;
+                                case "confident":
+                                    listDataHeader_doc.add("Tone: " + t_name);
+                                    //confident += t_score;
+                                    ScoreArr.add("Score: " +  t_score);
+                                    break;
+                                case "tentative":
+                                    listDataHeader_doc.add("Tone: " + t_name);
+                                    ScoreArr.add("Score: " +  t_score);
+                                    //tentative += t_score;
+                                    break;
+                                default:
+                            }
+
+                            listDataChild_doc.put(listDataHeader_doc.get(listDataHeader_doc.size()-1), ScoreArr);
+                        }
+
+                        DataSnapshot keywords_snapshot = instance.child("data").child("sentencesTone");
+                        for (DataSnapshot keywords : keywords_snapshot.getChildren()) {
+                            if (keywords.hasChild("emotion")) {
+
+                            }
+                        }
+                    }
+                listAdapter_doc.notifyDataSetChanged();
+                }
             }
 
             @Override
