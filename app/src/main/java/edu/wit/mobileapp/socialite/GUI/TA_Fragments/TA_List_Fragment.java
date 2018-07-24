@@ -31,6 +31,7 @@ import edu.wit.mobileapp.socialite.Keyboard.R;
 public class TA_List_Fragment extends Fragment {
 
     Spinner dateRangeSpinner;
+
     ExpandableListAdapter listAdapter_doc;
     ExpandableListView expListView_doc;
     List<String> listDataHeader_doc;
@@ -124,12 +125,11 @@ public class TA_List_Fragment extends Fragment {
 
         // Instantiate Discard Array
         final List<String> discard = new ArrayList<>();
+        final List<String> toneList = new ArrayList<>();
         discard.add("anger");
-        discard.add("disgust");
         discard.add("fear");
         discard.add("joy");
         discard.add("sadness");
-
 
         listDataHeader_doc.clear();
         listDataChild_doc.clear();
@@ -140,59 +140,36 @@ public class TA_List_Fragment extends Fragment {
         reference.orderByChild("Timestamp").startAt(startTime).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-//Lang Variables
-
-                float analytical=0f;
-                float confident=0f;
-                float tentative=0f;
-
-                boolean firstHeader = true;
+                //Lang Variables
+                float analytical = 0f;
+                float confident = 0f;
+                float tentative = 0f;
+                //Get the data
                 for (DataSnapshot instance : dataSnapshot.getChildren()) {
-                    DataSnapshot entities_snapshot = instance.child("data").child("documentTone").child("tones");
-                    for (DataSnapshot entities : entities_snapshot.getChildren()) {
+                    DataSnapshot data = instance.child("data").child("documentTone").child("tones");
+                    for (DataSnapshot tones : data.getChildren()) {
 
-                        //Get Document
-                        String t_id = entities.child("toneId").getValue(String.class);
-                        String t_name = entities.child("toneName").getValue(String.class);
-                        float t_score = entities.child("score").getValue(Float.class);
-                        List<String> ScoreArr = new ArrayList<String>();
-
-                        Log.v("Socialite", t_id + " " + t_score);
-                        Log.v("Socialite", entities.getValue().toString());
+                        //Set Tone Attributes
+                        String t_id = tones.child("toneId").getValue(String.class);
+                        float t_score = tones.child("score").getValue(Float.class);
 
                         if (!(discard.contains(t_id))) {
-                            switch (t_id){
+                            switch (t_id) {
                                 case "analytical":
-                                    listDataHeader_doc.add("Tone: " + t_name);
-                                    //analytical += t_score;
-                                    ScoreArr.add("Score: " +  t_score);
+                                    analytical += t_score;
                                     break;
                                 case "confident":
-                                    listDataHeader_doc.add("Tone: " + t_name);
-                                    //confident += t_score;
-                                    ScoreArr.add("Score: " +  t_score);
+                                    confident += t_score;
                                     break;
                                 case "tentative":
-                                    listDataHeader_doc.add("Tone: " + t_name);
-                                    ScoreArr.add("Score: " +  t_score);
-                                    //tentative += t_score;
+                                    tentative += t_score;
                                     break;
                                 default:
                             }
-
-                            listDataChild_doc.put(listDataHeader_doc.get(listDataHeader_doc.size()-1), ScoreArr);
-                        }
-
-                        DataSnapshot keywords_snapshot = instance.child("data").child("sentencesTone");
-                        for (DataSnapshot keywords : keywords_snapshot.getChildren()) {
-                            if (keywords.hasChild("emotion")) {
-
-                            }
                         }
                     }
-                listAdapter_doc.notifyDataSetChanged();
                 }
+                setExpListView_doc(analytical, confident, tentative);
             }
 
             @Override
@@ -200,6 +177,10 @@ public class TA_List_Fragment extends Fragment {
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
+    }
+
+    private void setExpListView_doc(float analytical, float confident, float tentative) {
+
     }
 
 }
