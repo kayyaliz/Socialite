@@ -57,10 +57,6 @@ public class TA_List_Fragment extends Fragment {
         listDataHeader_doc = new ArrayList<String>();
         listDataChild_doc = new HashMap<String, List<String>>();
 
-        expListView_sent = (ExpandableListView) rootView.findViewById(R.id.ta_list_elv_sent);
-        listDataHeader_sent = new ArrayList<String>();
-        listDataChild_sent = new HashMap<String, List<String>>();
-
         return rootView;
     }
 
@@ -75,12 +71,7 @@ public class TA_List_Fragment extends Fragment {
         listAdapter_doc = new ExpandableListAdapter(this.getActivity(), listDataHeader_doc, listDataChild_doc);
         expListView_doc.setAdapter(listAdapter_doc);
 
-        listDataHeader_sent.add("No Insights");
-        List<String> ToneArr_sent = new ArrayList<String>();
-        ToneArr_sent.add("No data has been entered yet. Click the \"Enter Data\" tab and enter text to begin!");
-        listDataChild_sent.put(listDataHeader_sent.get(0), ToneArr_sent);
-        listAdapter_sent = new ExpandableListAdapter(this.getActivity(), listDataHeader_sent, listDataChild_sent);
-        expListView_sent.setAdapter(listAdapter_sent);
+
         final Long unixTime = System.currentTimeMillis();
 
         final Long One_Day_Millis = (24 * 60 * 60 * 1000) * 1L;
@@ -171,12 +162,6 @@ public class TA_List_Fragment extends Fragment {
                 listAdapter_doc.notifyDataSetChanged();
                 setExpListView_doc( analytical, confident, tentative);
 
-                for (DataSnapshot instance : dataSnapshot.getChildren()) {
-                    DataSnapshot data = instance.child("data").child("sentenceTone").child("tones");
-                    for (DataSnapshot tones : data.getChildren()) {
-
-                    }
-                }
             }
 
             @Override

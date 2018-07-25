@@ -40,19 +40,4 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/ta_list_header_sent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:text="Detailed Sentence Tone"
-        android:textAlignment="center"
-        android:textColor="?attr/colorPrimary"
-        android:textSize="18sp" />
-
-    <ExpandableListView
-        android:id="@+id/ta_list_elv_sent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
 </LinearLayout>

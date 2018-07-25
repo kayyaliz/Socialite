@@ -47,7 +47,7 @@ public class TA_Parent_GUI extends AppCompatActivity implements NavigationView.O
 
 
     private int[] tabIcons = {
-            R.drawable.ic_pie_chart_outlined_white_24dp,
+            R.drawable.ic_assessment_black_24dp,
             R.drawable.ic_format_list_numbered_white_24dp,
             R.drawable.ic_info_outline_white_24dp
     };
