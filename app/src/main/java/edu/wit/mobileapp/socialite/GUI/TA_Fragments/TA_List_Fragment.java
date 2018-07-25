@@ -169,7 +169,15 @@ public class TA_List_Fragment extends Fragment {
                         }
                     }
                 }
-                setExpListView_doc(analytical, confident, tentative);
+                listAdapter_doc.notifyDataSetChanged();
+                setExpListView_doc( analytical, confident, tentative);
+
+                for (DataSnapshot instance : dataSnapshot.getChildren()) {
+                    DataSnapshot data = instance.child("data").child("sentenceTone").child("tones");
+                    for (DataSnapshot tones : data.getChildren()) {
+
+                    }
+                }
             }
 
             @Override
@@ -180,7 +188,18 @@ public class TA_List_Fragment extends Fragment {
     }
 
     private void setExpListView_doc(float analytical, float confident, float tentative) {
-
+        List<String> analyticalArray = new ArrayList<String>();
+        listDataHeader_doc.add("Analytical");
+        analyticalArray.add("Score: " + analytical);
+        listDataChild_doc.put(listDataHeader_doc.get(listDataHeader_doc.size()-1), analyticalArray);
+        List<String> confidentArray = new ArrayList<String>();
+        listDataHeader_doc.add("Confident");
+        confidentArray.add("Score: " + confident);
+        listDataChild_doc.put(listDataHeader_doc.get(listDataHeader_doc.size()-1), confidentArray);
+        List<String> tentativeArray = new ArrayList<String>();
+        listDataHeader_doc.add("Tentative");
+        tentativeArray.add("Score: " + tentative);
+        listDataChild_doc.put(listDataHeader_doc.get(listDataHeader_doc.size()-1), tentativeArray);
     }
 
 }
