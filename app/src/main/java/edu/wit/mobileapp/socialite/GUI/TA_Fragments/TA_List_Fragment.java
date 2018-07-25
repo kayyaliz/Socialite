@@ -37,11 +37,6 @@ public class TA_List_Fragment extends Fragment {
     List<String> listDataHeader_doc;
     HashMap<String, List<String>> listDataChild_doc;
 
-    ExpandableListAdapter listAdapter_sent;
-    ExpandableListView expListView_sent;
-    List<String> listDataHeader_sent;
-    HashMap<String, List<String>> listDataChild_sent;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

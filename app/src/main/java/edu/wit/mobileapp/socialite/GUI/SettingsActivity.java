@@ -37,7 +37,6 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
 
     Switch NLU_toggle;
     Switch TA_toggle;
-    Button Twitter_Acc;
     Button Delete_NLU_Data;
     Button Delete_TA_Data;
 
@@ -60,7 +59,6 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
 
         NLU_toggle = (Switch) findViewById(R.id.toggle_NLU_Data) ;
         TA_toggle = (Switch) findViewById(R.id.toggle_TA_Data) ;
-        Twitter_Acc = (Button) findViewById(R.id.Twitter_Acc_Button);
         Delete_NLU_Data = (Button) findViewById(R.id.Delete_NLU_Data_Button);
         Delete_TA_Data = (Button) findViewById(R.id.Delete_TA_Data_Button);
         loadSettings();
@@ -89,10 +87,8 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                 }
                 if(!(dataSnapshot.hasChild("Twitter_Acc"))) {
                     reference.child("Settings").child("Twitter_Acc").setValue("");
-                    Twitter_Acc.setText("Enable");
                 } else {
                     TA_toggle.setChecked((Boolean) dataSnapshot.child("Retrieve_NLU").getValue());
-                    Twitter_Acc.setText(dataSnapshot.child("Twitter_Acc").getValue().toString());
                 }
             }
 
