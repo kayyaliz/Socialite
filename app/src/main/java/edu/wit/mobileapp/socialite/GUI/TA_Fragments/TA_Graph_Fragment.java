@@ -155,6 +155,9 @@ public class TA_Graph_Fragment extends android.support.v4.app.Fragment {
                 legend.setEnabled(false);
                 barChart.setData(data);
 
+                //Define Bar Chart Style
+                barChart.setDrawGridBackground(false);
+
                 // Create the labels for the bars
                 final ArrayList<String> xVals = new ArrayList<>();
                 xVals.add("Analytical");

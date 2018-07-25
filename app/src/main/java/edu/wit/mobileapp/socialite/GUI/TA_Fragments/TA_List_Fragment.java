@@ -84,7 +84,6 @@ public class TA_List_Fragment extends Fragment {
         final Long unixTime = System.currentTimeMillis();
 
         final Long One_Day_Millis = (24 * 60 * 60 * 1000) * 1L;
-        loadList((unixTime - (1 * One_Day_Millis)));
 
         dateRangeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
