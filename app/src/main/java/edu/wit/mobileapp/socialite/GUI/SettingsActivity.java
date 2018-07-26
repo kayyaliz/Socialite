@@ -212,7 +212,8 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         } else if (id == R.id.nav_share) {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+            sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Socialite! Check it out!");
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Check out this awesome application developed by students at Wentworth Institute of Technology called Socialite! More information at: https://www.facebook.com/Socialite-1988944241417284");
             sendIntent.setType("text/plain");
             startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
         } else if (id == R.id.sign_out) {
